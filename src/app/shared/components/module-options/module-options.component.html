@@ -1,0 +1,9 @@
+<div class="module-container">
+    <div class="box-container">
+        @for(item of modules; track item){
+            <div class="box" (click)="loadModule(item)">
+                <span class="fs-5">{{item}}</span>
+            </div>
+        }
+    </div>
+</div>

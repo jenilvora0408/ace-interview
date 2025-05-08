@@ -1,0 +1,24 @@
+.code-container {
+    background-color: #2d2d2d; // GitHub Dark background
+    color: #d6e7d8;            // Light text color
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+  
+    pre, code {
+      background: transparent !important;
+      color: inherit;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+    }
+  }
+  
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    z-index: 2;
+  }
+  

@@ -1,0 +1,301 @@
+<div class="row g-0">
+  <!-- Question Navigation Section -->
+  <div class="question-nav mb-4 col-3 me-4 p-3">
+    <p class="fs-5">Questions</p>
+    <ul class="nav flex-column gap-2">
+      <li>
+        <a (click)="scrollToQuestion('q1')">1. What is the need for OOPs?</a>
+      </li>
+      <li><a (click)="scrollToQuestion('q2')">2. What is a Class?</a></li>
+      <li><a (click)="scrollToQuestion('q3')">3. What is an Object?</a></li>
+      <li>
+        <a (click)="scrollToQuestion('q4')">4. What are the main features/pillars of OOPS?</a>
+      </li>
+      <li><a (click)="scrollToQuestion('q5')">5. What is encapsulation?</a></li>
+      <li>
+        <a (click)="scrollToQuestion('q6')">6. How can we implement Encapsulation?</a>
+      </li>
+      <li><a (click)="scrollToQuestion('q7')">7. What is Polymorphism?</a></li>
+      <li><a (click)="scrollToQuestion('q8')">8. Explain Compile Time Polymorphism.</a></li>
+      <li><a (click)="scrollToQuestion('q9')">9. Explain method overloading with example.</a></li>
+      <li><a (click)="scrollToQuestion('q10')">10. Explain Runtime Polymorphism.</a></li>
+      <li><a (click)="scrollToQuestion('q11')">11. Explain Method Overriding with example.</a></li>
+      <li><a (click)="scrollToQuestion('q12')">12. What is meant by Inheritance?</a></li>
+      <li><a (click)="scrollToQuestion('q13')">13. Are there any limitations of Inheritance?</a></li>
+      <li><a (click)="scrollToQuestion('q14')">14. How many types of Inheritance are there in C#?</a></li>
+      <li><a (click)="scrollToQuestion('q15')">15. What do you mean by Abstraction?</a></li>
+      <li><a (click)="scrollToQuestion('q16')">16. What is the difference between Abstract Class & Interface?</a></li>
+    </ul>
+  </div>
+
+  <!-- Content Section -->
+  <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
+    <p class="module-heading fs-4">Object Oriented Programming System (OOPS)</p>
+    <p class="module-desc fs-5">
+      OOPS refers to Object Oriented Programming. It is the programming paradigm
+      that is defined using Objects.
+    </p>
+
+    <p #q1 class="module-question fs-4">1. What is the need for OOPs?</p>
+    <ul>
+      <li class="fs-5">
+        OOPs helps users to understand the software easily, although they don’t
+        know the actual implementation.
+      </li>
+      <li class="fs-5">
+        With OOPs, the readability, understandability, and maintainability of
+        the code increase multifold.
+      </li>
+      <li class="fs-5">
+        Even very big software can be easily written and managed easily using
+        OOPs.
+      </li>
+    </ul>
+
+    <p #q2 class="module-question fs-4">2. What is a Class?</p>
+    <div class="mb-3">
+      <span class="fs-5">A Class can be understood as a template or a blueprint, which contains
+        some values, known as member data or member & some set of rules, known
+        as behaviours or functions.</span><br />
+      <span class="fs-5">So, When an object is created, it automatically takes the data &
+        functions that are defined in the Class.</span><br />
+      <span class="fs-5">One can create as many objects as they want based on a Class.</span><br />
+      <span class="fs-5">Eg. First a Car's template is created. Then multiple units of Car are
+        created based on that template.</span>
+    </div>
+
+    <p #q3 class="module-question fs-4">3. What is an Object?</p>
+    <div class="mb-3">
+      <span class="fs-5">An Object refers to the instance of the Class, which contains the
+        instance of the members & behaviors defined in the Class template.</span><br />
+      <span class="fs-5">In the real world, an Object is an actual entity to which a user
+        interacts, whereas class is just the blueprint for that object.</span><br />
+      <span class="fs-5">So, the Objects consume space & have some characteristic
+        behaviour.</span>
+    </div>
+
+    <p #q4 class="module-question fs-4">
+      4. What are the main features/pillars of OOPS?
+    </p>
+    <div>
+      <p class="fs-5">
+        The main 4 features/pillars of Object Oriented Programming are:
+      </p>
+      <ul>
+        <li class="fs-5">Encapsulation</li>
+        <li class="fs-5">Polymorphism</li>
+        <li class="fs-5">Inheritance</li>
+        <li class="fs-5">Abstraction</li>
+      </ul>
+    </div>
+
+    <p #q5 class="module-question fs-4">5. What is Encapsulation?</p>
+    <div>
+      <p class="fs-5 mb-0">
+        One can visualize Encapsulation as the method of putting everything that
+        is required to do the job, inside a capsule & presenting that capsule to
+        the user.
+      </p>
+      <p class="fs-5">
+        By Encapsulation, all the necessary data & methods are bind together &
+        all the unnecessary details are hidden from the normal user.
+      </p>
+    </div>
+
+    <p #q6 class="module-question fs-4">6. How can we implement Encapsulation?</p>
+    <div class="mb-3">
+      <p class="fs-5">In C#, Encapsulation can be achieved by using Access Modifiers.</p>
+      <ul>
+        <li class="fs-5">Mark fields as private so that they cannot be accessed outside the class.</li>
+        <li class="fs-5">Provide access through public or protected methods or properties as needed.</li>
+      </ul>
+      <p class="fs-5">Example to implement Encapsulation in C#</p>
+      <div class="w-75">
+        <app-code-block [code]="highlightedCode" language="c#">
+        </app-code-block>
+      </div>
+    </div>
+
+    <p #q7 class="module-question fs-4">7. What is Polymorphism?</p>
+    <div>
+      <p class="fs-5 mb-0">Polymorphism is composed of 2 words - "poly" means many & "morph" means shapes.</p>
+      <p class="fs-5 mb-0">Therefore, Polymorphism refers to something that has many shapes.</p>
+      <p class="fs-5">In OOPS, Polymorphism refers to the process by which some code, data, method or object behaves differently under different circumstances or contexts.</p>
+      <p class="fs-5">There are 2 types of Polymorphism:</p>
+      <ul>
+        <li class="fs-5">Compile Time Polymorphism</li>
+        <li class="fs-5">Runtime Polymorphism</li>
+      </ul>
+    </div>
+
+    <p #q8 class="module-question fs-4">8. Explain Compile Time Polymorphism.</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-0">Compile time Polymorphism means that the method to be executed is determined at compile time.</p>
+      <p class="fs-5 mb-0">This is achieved mainly through method overloading.</p>
+      <p class="fs-5 mb-0">The compiler decides which method to call based on the number or type of parameters at compile time.</p>
+    </div>
+
+    <p #q9 class="module-question fs-4">9. Explain method overloading with example.</p>
+    <div class="mb-3">
+      <p class="fs-5">Method overloading refers to defining methods with same name but different parameter lists.</p>
+      <div class="w-75">
+        <app-code-block [code]="methodOverloadingCode" language="c#">
+        </app-code-block>
+      </div>
+      <p class="fs-5 mt-3">Usage of the given example:</p>
+      <div class="w-75">
+        <app-code-block [code]="methodOverloadingUsageCode" language="c#">
+        </app-code-block>
+      </div>
+    </div>
+
+    <p #q10 class="module-question fs-4">10. Explain Runtime Polymorphism.</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-0">
+        Runtime Polymorphism means that the method to be executed is determined at runtime, based on the object's actual type, not the reference type.
+      </p>
+      <p class="fs-5">This is achieved mainly through Method Overriding.</p>
+    </div>
+
+    <p #q11 class="module-question fs-4">11. Explain Method Overriding with example.</p>
+    <div class="mb-3">
+      <p class="fs-5">Method overriding can be implemented as follows:</p>
+      <ul>
+        <li class="fs-5">Create a base class with 'virtual' method</li>
+        <li class="fs-5">Create derived classes that override the base method</li>
+        <li class="fs-5">Call the method using a base class reference</li>
+      </ul>
+      <div class="w-75">
+        <app-code-block [code]="methodOverridingCode" language="c#">
+        </app-code-block>
+      </div>
+      <p class="fs-5 mt-3">Usage of the given example:</p>
+      <div class="w-75">
+        <app-code-block [code]="methodOverridingUsageCode" language="c#">
+        </app-code-block>
+      </div>
+    </div>
+
+    <p #q12 class="module-question fs-4">12. What is meant by Inheritance?</p>
+    <div>
+      <p class="fs-5 mb-0">The term Inheritance means receiving some quality or behaviour from a parent to an offspring.</p>
+      <p class="fs-5 mb-0">Inheritance is the mechanism by which an object or class referred to as child class is created using the definition of another object or class referred to as a parent class.</p>
+      <p class="fs-5 mb-2">Inheritance not only helps to keep the implementation simpler but also helps to facilitate code reuse.</p>
+      <p class="fs-5 mb-0"><u>Example:</u></p>
+      <p class="fs-5 mb-0">Let's take 3 different vehicles - a car, truck & bus.</p>
+      <p class="fs-5 mb-0">These 3 are entirely different from one another with their own specific characteristic & behavior.</p>
+      <p class="fs-5 mb-0">But in all 3, you will find some common elements like steering wheel, accelerator, clutch, brakes etc.</p>
+      <p class="fs-5 mb-0">Though these elements are used in different vehicles, still they have their own features which are common among all vehicles.</p>
+      <p class="fs-5">This can be achieved through Inheritance.</p>
+    </div>
+
+    <p #q13 class="module-question fs-4">13. Are there any limitations of Inheritance?</p>
+    <div>
+      <p class="fs-5 mb-0">Inheritance needs more time to process, as it needs to navigate through multiple classes for its implementation.</p>
+      <p class="fs-5 mb-0">Also, the Classes involved in Inheritance - the base class & the child class are very tightly coupled together.</p>
+      <p class="fs-5">So, if one needs to make some changes, they might need to do nested changes in both classes.</p>
+    </div>
+
+    <p #q14 class="module-question fs-4">14. How many types of Inheritance are there in C#?</p>
+    <div>
+      <p class="fs-5 mb-0">C# supports 4 types of Inheritance which are as follows:</p>
+      <ul>
+        <li class="fs-5">Single Inheritance: A class inherits from one base class.</li>
+        <li class="fs-5">Multi-level Inheritance: A class inherits from a derived class.</li>
+        <li class="fs-5">Hierarchical Inheritance: Multiple classes inherit from a single base class.</li>
+        <li class="fs-5">Multiple Inheritance: C# does not support multiple class inheritance, but you can implement multiple interfaces.</li>
+      </ul>
+      <p class="fs-5"><u>Single Inheritance:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="singleInheritanceCode" language="c#">
+        </app-code-block>
+      </div>
+      <p class="fs-5 mt-3"><u>Multi-level Inheritance:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="multiLevelInheritanceCode" language="c#">
+        </app-code-block>
+      </div>
+      <p class="fs-5 mt-3"><u>Hierarchical Inheritance:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="hierarchicalInheritanceCode" language="c#">
+        </app-code-block>
+      </div>
+      <p class="fs-5 mt-3"><u>Multiple Inheritance:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="multipleInheritanceCode" language="c#">
+        </app-code-block>
+      </div>
+    </div>
+
+    <p #q15 class="module-question fs-4 mt-3">15. What do you mean by Abstraction?</p>
+    <div>
+      <p class="fs-5 mb-0">Abstraction is the method of hiding unnecessary details from the necessary ones.</p>
+      <p class="fs-5 mb-0"><u>Example:</u> Consider a car. We only need to know how to drive a car & not how the wires are connected inside it.</p>
+      <p class="fs-5 mb-0">This is obtained using Abstraction.</p>
+      <p class="fs-5">Abstraction is typically achieved using abstract classes & interfaces.</p>
+      <p class="fs-5"><u>Using abstract class:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="abstractClassCode" language="c#">
+        </app-code-block>
+      </div>
+      <div class="mt-3">
+        <p class="fs-5 mb-1"><u>Note:</u></p>
+        <ul>
+          <li class="fs-5">You cannot create an object of an abstract class.</li>
+          <li class="fs-5">Abstract methods must be implemented in derived classes.</li>
+          <li class="fs-5">Abstract class can contain both abstract & non-abstract method.</li>
+        </ul>
+      </div>
+      <p class="fs-5"><u>Using Interface:</u></p>
+      <div class="w-75">
+        <app-code-block [code]="abstractionInterfaceCode" language="c#">
+        </app-code-block>
+      </div>
+      <div class="mt-3">
+        <p class="fs-5 mb-1"><u>Note:</u></p>
+        <ul>
+          <li class="fs-5">Interface only contains declarations (methods, properties etc.).</li>
+          <li class="fs-5">A class must implement all members of the interface.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p #q16 class="module-question fs-4">16. What is the difference between Abstract Class & Interface?</p>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="fs-5" scope="col">Abstract Class</th>
+            <th class="fs-5" scope="col">Interface</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fs-5">It contains both declaration & implementation of methods.</td>
+            <td class="fs-5">It contains only the declaration of methods.</td>
+          </tr>
+          <tr>
+            <td class="fs-5">Multiple Inheritance is not achieved by Abstract Class.</td>
+            <td class="fs-5">Multiple Inheritance is achieved by Interface.</td>
+          </tr>
+          <tr>
+            <td class="fs-5">It can contain constructor.</td>
+            <td class="fs-5">It does not contain constructor.</td>
+          </tr>
+          <tr>
+            <td class="fs-5">It can contain static members.</td>
+            <td class="fs-5">It does not contain static members.</td>
+          </tr>
+          <tr>
+            <td class="fs-5">It can contain different type of access modifiers like public, private, protected etc.</td>
+            <td class="fs-5">It only contains public access modifier because everything in the interface is public.</td>
+          </tr>
+          <tr>
+            <td class="fs-5">The performance of an abstract class is fast.</td>
+            <td class="fs-5">The performance of an interface is slow because it requires time to search actual method in the corresponding class.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

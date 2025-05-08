@@ -1,0 +1,211 @@
+<div class="row g-0">
+    <!-- Question Navigation Section -->
+    <div class="question-nav mb-4 col-3 me-4 p-3">
+        <ul class="nav flex-column gap-2">
+            <li><a (click)="scrollToQuestion('q1')">1. Which .NET Core architecture do you use?</a></li>
+            <li><a (click)="scrollToQuestion('q2')">2. What is Repository Pattern, and how does it relate to Entity Framework?</a></li>
+            <li><a (click)="scrollToQuestion('q3')">3. What is the purpose of Program.cs file in .NET Core?</a></li>
+            <li><a (click)="scrollToQuestion('q4')">4. What is the difference between Authentication & Authorization?</a></li>
+            <li><a (click)="scrollToQuestion('q5')">5. What are the different ways for authentication in .NET Core?</a></li>
+            <li><a (click)="scrollToQuestion('q6')">6. Explain the difference between controller & an API.</a></li>
+            <li><a (click)="scrollToQuestion('q7')">7. What is Inversion of Control?</a></li>
+            <li><a (click)="scrollToQuestion('q8')">8. What is Dependency Injection in C#?</a></li>
+            <li><a (click)="scrollToQuestion('q9')">9. Why do we need Dependency Injection?</a></li>
+            <li><a (click)="scrollToQuestion('q10')">10. How to create Dependency Injection in .NET Core?</a></li>
+            <li><a (click)="scrollToQuestion('q11')">11. In how many ways, can we achieve Dependency Injection in C#?</a></li>
+            <li><a (click)="scrollToQuestion('q12')">12. Explain AddSingleton, AddScoped & AddTransient.</a></li>
+            <li><a (click)="scrollToQuestion('q13')">13. How to handle error globally in .NET Core?</a></li>
+            <li><a (click)="scrollToQuestion('q14')">14. What is the use of Middleware in .NET Core?</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Section -->
+    <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
+        <div class="module-heading fs-4">.NET Core</div>
+        <div class="module-desc">
+            <p class="fs-5">
+                .NET Core is a free, open-source, cross-platform framework for building
+                modern applications, including web, desktop, mobile & cloud-based apps.
+                It allows developers to write code that can run on multiple platforms
+                (Windows, MacOS, Linux) & is known for its performance, scalability &
+                flexibility.
+            </p>
+        </div>
+
+        <p #q1 class="module-question fs-4">1. Which .NET Core architecture do you use?</p>
+        <div>
+            <p class="fs-5 mb-0">I work in a project that follows Repository pattern in 3-tier architecture.</p>
+            <p class="fs-5 mb-0">a. <u>Presentation Layer (Controller):</u> Handles incoming HTTP requests, validates them & returns responses.</p>
+            <p class="fs-5 mb-0">b. <u>Business Logic Layer (Services):</u> Contains the core business logic & application rules. It processes the data between the presentation layer & the data access layer.</p>
+            <p class="fs-5">c. <u>Data Access Layer (Repository Layer):</u> Manages interaction with the database.</p>
+        </div>
+
+        <p #q2 class="module-question fs-4">2. What is Repository Pattern, and how does it relate to Entity Framework?</p>
+        <div>
+            <p class="fs-5 mb-0">The Repository pattern is a design pattern used to abstract the data-access layer of an application, providing a clean separation between the business logic & data storage.</p>
+            <p class="fs-5 mb-0">Entity Framework (EF) is an Object-Relational Mapping (ORM) framework that interacts directly with the database.</p>
+            <p class="fs-5">The Repository pattern can be used on top of EF to hide EF's direct database access logic, providing a more testable & flexible interface.</p>
+        </div>
+
+        <p #q3 class="module-question fs-4">3. What is the purpose of Program.cs file in .NET Core?</p>
+        <div>
+            <p class="fs-5 mb-0">The Program.cs file in .NET Core is the entry point of an application. It's main purpose is to configure & start the application.</p>
+            <p class="fs-5">It sets up the host & defines the necessary configuration, services & middleware required to run the application.</p>
+        </div>
+
+        <p #q4 class="module-question fs-4">4. What is the difference between Authentication & Authorization?</p>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="fs-5" scope="col">Authentication</th>
+                        <th class="fs-5" scope="col">Authorization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fs-5">Purpose: Verifies the identity of a user or system</td>
+                        <td class="fs-5">Purpose: Determines what resources a user or system is allowed to access after authentication.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Process: Users provide credentials (eg. username, password, biometrics) to prove who they are.</td>
+                        <td class="fs-5">Process: Once authenticated, the system checks if the user has permission to perform certain actions (eg. read, write, modify)</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Example: Logging in to a website with username & password.</td>
+                        <td class="fs-5">Example: After logging in, a user may be allowed to view certain pages but not modify them.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Focus: Answers the question: "Who are you?"</td>
+                        <td class="fs-5">Focus: Answers the question: "What are you allowed to do?"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p #q5 class="module-question fs-4">5. What are the different ways for authentication in .NET Core?</p>
+        <div>
+            <p class="fs-5">There are 3 ways for Authentication in .NET Core which are as below:</p>
+            <p class="fs-5">a. <u>Cookie-based Authentication:</u></p>
+            <p class="fs-5 mb-0">Stores authentication information in a cookie. It's often used in web-applications where the server generates a cookie after a user logs in.</p>
+            <p class="fs-5 mb-0">Use Case: Tradionatiol ASP.NET Core MVC web-applications.</p>
+            <p class="fs-5">Example: Signin Manager creates a cookie for authenticated users, which is then sent with subsequent requests.</p>
+            <p class="fs-5">b. <u>JWT (JSON Web Token) Authentication:</u></p>
+            <p class="fs-5 mb-0">A stateless authentication method that uses a token (JWT) to verify a user's identity. The token is sent in the HTTP headers (typically Authorization: Bearer).</p>
+            <p class="fs-5 mb-0">Use Case: Common in API-based applications & SPA (Single Page Applications).</p>
+            <p class="fs-5">Example: After login, the server issues a JWT which the client uses for subsequent requests.</p>
+            <p class="fs-5">c. <u>OAuth2 & OpenID Connect:</u></p>
+            <p class="fs-5 mb-0">OAuth2 is an authorization protocol, and OpenID Connect extends OAuth2 for Authentication.</p>
+            <p class="fs-5 mb-0">Use Case: It's often used for integrating external identity providers like Google, Facebook or Microsoft.</p>
+            <p class="fs-5">Example: Web Apps or APIs that rely on third-party authentication.</p>
+        </div>
+
+        <p #q6 class="module-question fs-4">6. Explain the difference between controller & an API.</p>
+        <div>
+            <p class="fs-5 mb-0">Controller can hold a collection of APIs to handle HTTP requests & process user inputs.</p>
+            <p class="fs-5">API defines a single endpoint which can be used by other software applications to request/retrieve data.</p>
+        </div>
+
+        <p #q7 class="module-question fs-4">7. What is Inversion of Control?</p>
+        <div>
+            <p class="fs-5 mb-0">Inversion of Control (IoC) in .NET is a design principle where control over object creation & dependencies is transferred from the class to an external entity, typically an IoC container.</p>
+            <p class="fs-5 mb-0">Principle: Don't call me; we will call you.</p>
+            <p class="fs-5">The main class should not have a concrete implementation of an aggregated class, rather, it should depend on the abstraction of that class.</p>
+        </div>
+
+        <p #q8 class="module-question fs-4">8. What is Dependency Injection in C#?</p>
+        <div>
+            <p class="fs-5 mb-0">Dependency Injection (DI) is a C# design pattern that implements Inversion of Control (IoC) by allowing an object's dependencies to be injected at runtime rather than hard-coded.</p>
+            <p class="fs-5">This promotes loose coupling, making code more modular, testable & maintainable.</p>
+        </div>
+
+        <p #q9 class="module-question fs-4">9. Why do we need Dependency Injection?</p>
+        <div>
+            <p class="fs-5 mb-0">Without Dependency Injection, a class creates its own dependencies using the 'new' keyword, which tightly couples it to specific implementations.</p>
+            <p class="fs-5">DI allows the dependencies to be passed in, making the class less dependent on concrete types.</p>
+        </div>
+
+        <p #q10 class="module-question fs-4">10. How to create Dependency Injection in .NET Core?</p>
+        <div>
+            <p class="fs-5 mb-0">a. <u>Define your Services:</u> First, create the services that we need to inject. These typically implement an interface.</p>
+            <p class="fs-5 mb-0">b. <u>Register services in the DI container:</u> In .NET Core, services are registered in the Startup Class (or Program class in .NET 6+). We register the services in the 'ConfigureServices' method.</p>
+            <p class="fs-5">c. <u>Inject services into Consumers:</u> To use the services, inject them into the classes that need them.</p>
+        </div>
+
+        <p #q11 class="module-question fs-4">11. In how many ways, can we achieve Dependency Injection in C#?</p>
+        <div>
+            <p class="fs-5 mb-2">In C#, Dependency Injection can be achieved in 3 ways, which are as below:</p>
+            <div class="w-75">
+                <app-code-block [code]="diExampleSetUpCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-3 mb-0">a. <u>Constructor Injection:</u></p>
+            <p class="fs-5 mb-0">Dependencies are passed via the class constructor.</p>
+            <p class="fs-5">Constructor Injection is best for mandatory dependencies & promotes immutability.</p>
+            <div class="w-75">
+                <app-code-block [code]="diConstructorCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-3 mb-0">b. <u>Property Injection:</u></p>
+            <p class="fs-5 mb-0">Dependencies are set through public properties.</p>
+            <p class="fs-5">Property Injection is best for optional dependencies but it may lead to runtime 'NullReferenceException' if not set properly.</p>
+            <div class="w-75">
+                <app-code-block [code]="diPropertyCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-3 mb-0">c. <u>Method Injection:</u></p>
+            <p class="fs-5 mb-0">Dependencies are passes as parameter to a method.</p>
+            <p class="fs-5">Method Injection is best when dependency is used only in 1 method.</p>
+            <div class="w-75">
+                <app-code-block [code]="diMethodCode" language="c#">
+                </app-code-block>
+            </div>
+        </div>
+
+        <p #q12 class="module-question fs-4 mt-3">12. Explain AddSingleton, AddScoped & AddTransient.</p>
+        <div>
+            <p class="fs-5 mb-0">AddSingleton: Creates a single instance of the service for the entire application lifetime.</p>
+            <p class="fs-5 mb-0">AddScoped: Creates a new instance of the service per request (or per scope).</p>
+            <p class="fs-5">AddTransient: A new instance is provided every time the service is injected.</p>
+        </div>
+
+        <p #q13 class="module-question fs-4">13. How to handle error globally in .NET Core?</p>
+        <div>
+            <p class="fs-5 mb-0">In .NET Core, global error-handling is typically done using middleware, which captures unhandeled exceptions & ensures consistent error responses.</p>
+            <p class="fs-5">Here are 3 recommended ways to handle errors globally:</p>
+            <p class="fs-5 mb-0">a. <u>Exception Middleware: UseExceptionHandler</u> (Recommended for Production)</p>
+            <p class="fs-5">This Middleware captures all unhandeled exceptions & can return custom error responses.</p>
+            <div class="w-75">
+                <app-code-block [code]="useExceptionHandlerCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-2">This adds the 'ExceptionHandlerMiddleware' to the pipeline. It specifies that if an exception occurs, it will be handled by a controller route mapped to '/Error'.</p>
+            <p class="fs-5 mb-0">b. <u>Developer Exception Page: </u> (for development only)</p>
+            <p class="fs-5">This provides detailed stack traces but should not be used in production.</p>
+            <div class="w-75">
+                <app-code-block [code]="devExceptionPageCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-3">c. <u>Custom Exception Middleware: </u> (more control)</p>
+            <p class="fs-5">Create your own middleware to log, format & return error responses as needed.</p>
+            <div class="w-75">
+                <app-code-block [code]="customExceptionMiddlewareCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-3">Register the middleware in Program.cs as shown below.</p>
+            <div class="w-75">
+                <app-code-block [code]="registerCustomMiddlewareCode" language="c#">
+                </app-code-block>
+            </div>
+        </div>
+
+        <p #q14 class="module-question fs-4 mt-3">14. What is the use of Middleware in .NET Core?</p>
+        <div>
+            <p class="fs-5 mb-2">Middleware is used to:</p>
+            <p class="fs-5 mb-0">a. Handle Requests: Process incoming HTTP requests.</p>
+            <p class="fs-5 mb-0">b. Modify Responses: Modify or generate HTTP responses.</p>
+            <p class="fs-5 mb-0">c. Perform Actions: Execute logic such as authentication, logging, or error handling.</p>
+            <p class="fs-5">d. Pipeline: Middleware is configured in specific order within the request pipeline. Each middleware component has access to the HTTP context & can either handle the request or pass it to the next component in the pipeline.</p>
+        </div>
+    </div>
+</div>
