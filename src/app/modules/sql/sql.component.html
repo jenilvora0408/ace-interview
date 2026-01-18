@@ -1,0 +1,497 @@
+<div class="row g-0">
+    <!-- Question Navigation Section -->
+    <div class="question-nav mb-4 col-3 me-4 p-3">
+        <p class="fs-5">Questions</p>
+        <ul class="nav flex-column gap-2">
+            <li>
+                <a (click)="scrollToQuestion('q1')">1. What is Primary key & why is it important?</a>
+            </li>
+            <li>
+                <a (click)="scrollToQuestion('q2')">2. What is a Foreign key & how is it different from a Primary
+                    key?</a>
+            </li>
+            <li>
+                <a (click)="scrollToQuestion('q3')">3. What is the difference between DELETE & TRUNCATE?</a>
+            </li>
+            <li>
+                <a (click)="scrollToQuestion('q4')">4. What is the difference between 'char' & 'varchar' data types?</a>
+            </li>
+            <li>
+                <a (click)="scrollToQuestion('q5')">5. Explain SQL Joins in detail.</a>
+            </li>
+            <li>
+                <a (click)="scrollToQuestion('q6')">6. What is a transaction in SQL, and why is it important?</a>
+            </li>
+            <li><a (click)="scrollToQuestion('q7')">7. What is a Deadlock?</a></li>
+            <li><a (click)="scrollToQuestion('q8')">8. What is NOLOCK?</a></li>
+            <li><a (click)="scrollToQuestion('q9')">9. What is Stuff?</a></li>
+            <li><a (click)="scrollToQuestion('q10')">10. What are Stored Procedures?</a></li>
+            <li><a (click)="scrollToQuestion('q11')">11. What are Functions?</a></li>
+            <li><a (click)="scrollToQuestion('q12')">12. What are Views in SQL?</a></li>
+            <li><a (click)="scrollToQuestion('q13')">13. What is the difference between Stored Procedures & Functions?</a></li>
+            <li><a (click)="scrollToQuestion('q14')">14. Explain triggers in SQL.</a></li>
+            <li><a (click)="scrollToQuestion('q15')">15. Explain cursors in SQL.</a></li>
+            <li><a (click)="scrollToQuestion('q16')">16. What is the difference between WHERE & HAVING clause in SQL?</a></li>
+            <li><a (click)="scrollToQuestion('q17')">17. What is Indexing in SQL?</a></li>
+            <li><a (click)="scrollToQuestion('q18')">18. How can we create Indexes?</a></li>
+            <li><a (click)="scrollToQuestion('q19')">19. What are constraints in SQL?</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Section -->
+    <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
+        <p class="module-heading fs-4">Structured Query Language (SQL)</p>
+        <p class="module-desc fs-5">
+            SQL is a programming language used to manipulate & manage data in
+            relational databases. It is used to communicate & connect with a database
+            to create, modify, retrieve & delete data.
+        </p>
+
+        <p #q1 class="module-question fs-4">
+            1. What is Primary key & why is it important?
+        </p>
+        <div>
+            <p class="fs-5 mb-0">
+                A primary key is a crucial component as it serves as a unique identifier
+                in a table for each record.
+            </p>
+            <p class="fs-5 mb-0">
+                Using a primary key, a database management system can quickly locate &
+                retrieve data from a table without scanning the entire table.
+            </p>
+            <p class="fs-5 mb-0">
+                This makes data retrieval more efficient, especially in large databases
+                with many records.
+            </p>
+            <p class="fs-5">
+                Additionally, primary keys allow for the easy creation of relationships
+                between tables, simplifying complex queries & making database
+                maintenance easier.
+            </p>
+        </div>
+
+        <p #q2 class="module-question fs-4">
+            2. What is a Foreign key & how is it different from a Primary key?
+        </p>
+        <div>
+            <p class="fs-5 mb-0">
+                A foreign key is a constraint that establishes a link between 2 tables
+                in a relational database.
+            </p>
+            <p class="fs-5 mb-0">
+                Foreign key is used to maintain referential integrity.
+            </p>
+            <p class="fs-5 mb-0">
+                It is a field or set of fields in a table that refers to the primary key
+                of another table.
+            </p>
+            <p class="fs-5">
+                It differs from the primary key in a way that it does not have to be
+                unique & can be used to establish relationships between tables.
+            </p>
+        </div>
+
+        <p #q3 class="module-question fs-4">
+            3. What is the difference between DELETE & TRUNCATE?
+        </p>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="fs-5" scope="col">DELETE</th>
+                        <th class="fs-5" scope="col">TRUNCATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fs-5">
+                            Delete is a DML (Data Manipulation Language) command used to
+                            remove rows from a table based on specific conditions (with WHERE
+                            clause). If no condition is provided, all rows in the table are
+                            deleted.
+                        </td>
+                        <td class="fs-5">
+                            Truncate is a DDL (Data Definition Language) command used to
+                            remove all rows from a table.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Deletes row one by one.</td>
+                        <td class="fs-5">Removes all rows at once.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Logs each deleted row.</td>
+                        <td class="fs-5">Logs only page deallocations.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">
+                            Speed is much slower in case of large datasets.
+                        </td>
+                        <td class="fs-5">
+                            Speed is much faster since it deallocates pages.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Triggers are fired.</td>
+                        <td class="fs-5">Triggers are not fired.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Delete does not reset identity.</td>
+                        <td class="fs-5">Truncate resets identity seed.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p #q4 class="module-question fs-4">
+            4. What is the difference between 'char' & 'varchar' data types?
+        </p>
+        <div>
+            <p class="fs-5 mb-0">
+                CHAR is a fixed-length data-type, meaning it reserves a fixed amount of
+                space for the data, regardless of how much is actually used.
+            </p>
+            <p class="fs-5 mb-0">
+                If the data inserted into a CHAR column is shorter than the defined
+                length, SQL Server pads the remaining space with spaces.
+            </p>
+            <p class="fs-5 mb-0">
+                VARCHAR is a variable length data-type, meaning it uses only as much
+                space as the actual data requires, plus a small overhead to store the
+                length of the string.
+            </p>
+            <p class="fs-5 mb-2">
+                It only stores the exact amount of characters in the string, without
+                padding, making it more space-efficient when storying data of varying
+                lengths.
+            </p>
+            <p class="fs-5 mb-0"><u>When to Use</u>?</p>
+            <p class="fs-5 mb-0">
+                Use CHAR when data is consistently of the same length (eg. fixed-length
+                codes).
+            </p>
+            <p class="fs-5 mb-2">
+                Use VARCHAR when the data varies in length (eg. name, addresses).
+            </p>
+            <p class="fs-5 mb-0"><u>Example of Storage Difference:</u></p>
+            <p class="fs-5 mb-0">
+                For a CHAR(10) column storing 'Test', SQL Server will store it as 'Test
+                ' (with 6 extra spaces).
+            </p>
+            <p class="fs-5">
+                For a VARCHAR(10) column storing 'Test', SQL Server will just store it
+                as 'Test' without any extra spaces.
+            </p>
+        </div>
+
+        <p #q5 class="module-question fs-4">5. Explain SQL Joins in detail.</p>
+        <div>
+            <p class="fs-5 mb-0">
+                A Join clause is used to combine rows from 2 or more tables, based on a
+                related column between them.
+            </p>
+            <p class="fs-5 mb-2">Here are the different types of SQL joins:</p>
+            <p class="fs-5 mb-0">a. <u>Inner Join:</u></p>
+            <p class="fs-5 mb-0">
+                Inner Join returns records that have matching values in both tables.
+            </p>
+            <p class="fs-5 mb-2">Syntax:-</p>
+            <div class="w-75">
+                <app-code-block [code]="innerJoinSyntax" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-3">b. <u>Left Join:</u></p>
+            <p class="fs-5 mb-0">
+                Left Join returns all records from the left table & matched records from
+                the right table.
+            </p>
+            <p class="fs-5 mb-2">Syntax:-</p>
+            <div class="w-75">
+                <app-code-block [code]="leftJoinSyntax" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-3">c. <u>Right Join:</u></p>
+            <p class="fs-5 mb-0">
+                Right Join returns all records from the right table & matched records
+                from the left table.
+            </p>
+            <p class="fs-5 mb-2">Syntax:-</p>
+            <div class="w-75">
+                <app-code-block [code]="rightJoinSyntax" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-3">d. <u>Full Join:</u></p>
+            <p class="fs-5 mb-0">
+                Full Join returns all records when there is a match in either left or
+                right table.
+            </p>
+            <p class="fs-5 mb-2">Syntax:-</p>
+            <div class="w-75">
+                <app-code-block [code]="fullJoinSyntax" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-3">e. <u>Self Join:</u></p>
+            <p class="fs-5 mb-0">
+                A self join is a regular join, but the table is joined with itself.
+            </p>
+            <p class="fs-5 mb-2">Syntax:-</p>
+            <div class="w-75">
+                <app-code-block [code]="selfJoinSyntax" language="c#"> </app-code-block>
+            </div>
+        </div>
+
+        <p #q6 class="module-question fs-4 mt-3">
+            6. What is a transaction in SQL, and why is it important?
+        </p>
+        <div>
+            <p class="fs-5 mb-0">
+                A transaction in SQL is a sequence of one or more SQL operations (such
+                as INSERT, UPDATE, DELETE etc.) executed as a single, atomic unit of
+                work.
+            </p>
+            <p class="fs-5 mb-0">
+                The key property of a transaction is that it either completes fully or
+                does not execute at all.
+            </p>
+            <p class="fs-5 mb-0">
+                This ensures data integrity & consistency in a database.
+            </p>
+            <p class="fs-5 mb-1">Transactions are governed by the ACID properties:</p>
+            <p class="fs-5 mb-0">
+                <u>Atomicity:</u> The entire transaction either takes place at once or
+                does'nt happen at all. There is no midway i.e. transactions do not occur
+                partially.
+            </p>
+            <p class="fs-5 mb-0">
+                <u>Consistency:</u> This means that integrity constraints must be
+                maintained so that the database is consistent before & after the
+                transaction. It refers to the correctness of the database.
+            </p>
+            <p class="fs-5 mb-0">
+                <u>Isolation:</u> Transactions are isolated from one another, meaning
+                the operations within a transaction are invisible to other transactions
+                until the transaction is complete.
+            </p>
+            <p class="fs-5 mb-0">
+                <u>Durability:</u> Once a transaction is committed, it's changes are
+                permanent & will survive any system failure.
+            </p>
+        </div>
+
+        <p #q7 class="module-question fs-4 mt-3">7. What is a Deadlock?</p>
+        <div>
+            <p class="fs-5 mb-0">
+                A deadlock occurs when 2 or more transactions block each other by
+                holding locks that the other needs - resulting in a cycle.
+            </p>
+            <p class="fs-5 mb-1"><u>Example:</u></p>
+            <p class="fs-5 mb-0">Transaction A locks Table 1 & wants Table 2.</p>
+            <p class="fs-5 mb-0">Transaction B locks Table 2 & wants Table 1.</p>
+            <p class="fs-5 mb-0">
+                Neither can proceed, SQL Server detects this & kills one with a
+                'deadlock victim' error.
+            </p>
+        </div>
+
+        <p #q8 class="module-question fs-4 mt-3">8. What is NOLOCK?</p>
+        <div>
+            <p class="fs-5 mb-0">
+                NOLOCK is a table hint that allows SQL Server to read data without
+                acquiring shared locks.
+            </p>
+            <p class="fs-5 mb-1">
+                It's like reading "dirty" data - meaning the data might be in the middle
+                of the change by another transaction.
+            </p>
+            <p class="fs-5 mb-3"><u>Syntax:</u></p>
+            <div class="w-75">
+                <app-code-block [code]="noLockSyntax" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mb-1 mt-2"><u>Pros:</u></p>
+            <p class="fs-5 mb-0">Improves performance for read-heavy queries.</p>
+            <p class="fs-5 mb-0">Avoids being blocked by other transactions.</p>
+            <p class="fs-5 mb-1 mt-2"><u>Cons:</u></p>
+            <p class="fs-5 mb-0">
+                May return dirty, uncommitted or inconsistent data.
+            </p>
+            <p class="fs-5 mb-0">
+                Rows may appear twice or not at all due to in-flight changes.
+            </p>
+            <p class="fs-5 mb-0"></p>
+        </div>
+
+        <p #q9 class="module-question fs-4 mt-3">9. What is Stuff?</p>
+        <div>
+            <p class="fs-5 mb-0">
+                In SQL Server, the Stuff() function is used to insert a string into
+                another string, effectively replacing a part of it at a specified
+                position.
+            </p>
+            <p class="fs-5"><u>Syntax:</u></p>
+            <div class="w-75">
+                <app-code-block [code]="stuffSyntax" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mt-2"><u>Example:</u></p>
+            <div class="w-75">
+                <app-code-block [code]="stuffExample" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mt-2"><u>Output:</u></p>
+            <div class="w-75">
+                <app-code-block [code]="stuffOutput" language="c#"> </app-code-block>
+            </div>
+            <p class="fs-5 mt-2">
+                It starts at 6th position i.e. ‘W’, deletes 5 characters starting from 6th position & replaces – result
+                is “HelloSQL”.
+            </p>
+        </div>
+
+        <p #q10 class="module-question fs-5 mt-3">10. What are Stored Procedures?</p>
+        <div>
+            <p class="fs-5 mb-0">A stored procedure is a precompiled collection of SQL statements that can be executed as a unit.</p>
+            <p class="fs-5 mb-0"><u>Key Features:</u></p>
+            <ul>
+                <li class="fs-5">Reusable: Once created, it can be called multiple times by different clients.</li>
+                <li class="fs-5">Parameterization: Can accept input and output parameters.</li>
+                <li class="fs-5">Complex logic: Can include control flow statements (like IF, WHILE), and it can call other procedures or functions.</li>
+                <li class="fs-5">Performance: Precompiled, reducing query parsing time.</li>
+                <li class="fs-5">Transactions: Can be used to execute multiple SQL commands in a single transaction.</li>
+                <li class="fs-5">Security: Permissions can be controlled so that users can execute the procedure without direct table access.</li>
+            </ul>
+        </div>
+
+        <p #q11 class="module-question fs-5 mt-3">11. What are Functions?</p>
+        <div>
+            <p class="fs-5 mb-0">
+                A function is a database object that can take input parameters, perform operations, and return a value (or result set).
+            </p>
+            <p class="fs-5 mb-0">
+                Unlike stored procedures, functions are more limited in terms of what they can do (e.g., they can't modify data or manage transactions directly).
+            </p>
+            <p class="fs-5 mb-0"><u>Types of Functions:</u></p>
+            <ul>
+                <li class="fs-5">Scalar Functions: Returns a single value (eg. a number or string).</li>
+                <li class="fs-5">Table Valued Functions (TVFs): Returns a table, which can be used like a virtual table in queries.</li>
+            </ul>
+        </div>
+
+        <p #q12 class="module-question fs-5 mt-3">12. What are Views in SQL?</p>
+        <div>
+            <p class="fs-5 mb-0">A View is a virtual table that is based on the result of an SQL query.</p>
+            <p class="fs-5 mb-0">It does not store data itself but displays data from one or more tables in a predefined way.</p>
+            <p class="fs-5 mb-0">Views help simplify complex queries & provide a layer of abstraction for users.</p>
+        </div>
+
+        <p #q13 class="module-question fs-5 mt-3">13. What is the difference between Stored Procedures & Functions?</p>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="fs-5" scope="col">Stored Procedures</th>
+                        <th class="fs-5" scope="col">Functions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fs-5">
+                            Stored Procedure is used to perform actions (e.g. Insert, Update & Delete) complex business logic.
+                        </td>
+                        <td class="fs-5">
+                            Functions are used to compute & return a value (scalar or table), usually used in queries.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Stored Procedures can return 0 or more values via OUT parameters or result sets.</td>
+                        <td class="fs-5">Must return a single value (scalar function) or a table (table-valued function).</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">Stored Procedures cannot be used within a SELECT statement.</td>
+                        <td class="fs-5">Functions can be used in SELECT, WHERE clauses etc.</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-5">
+                            Stored Procedures can perform INSERT, UPDATE & DELETE operations.
+                        </td>
+                        <td class="fs-5">
+                            Functions cannot modify database state i.e. cannot perform INSERT, UPDATE & DELETE operations.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p #q14 class="module-question fs-5 mt-3">14. Explain triggers in SQL.</p>
+        <div>
+            <p class="fs-5 mb-0">In SQL, a trigger is a database object that automatically executes when a specific event occurs.</p>
+            <p class="fs-5 mb-0"><u>Types of Triggers:</u></p>
+            <ul>
+                <li class="fs-5">DML Triggers: Automatically executes in response to DML (Data Manipulation Language) events like INSERT, UPDATE or DELETE.</li>
+                <li class="fs-5">DDL Triggers: Automatically executes in response to DDL (Data Definition Language) events like CREATE, ALTER or DROP.</li>
+                <li class="fs-5">Logon Triggers: Automatically executes in response to a logon event, which occurs when a user session is established.</li>
+            </ul>
+        </div>
+
+        <p #q15 class="module-question fs-5 mt-3">15. Explain cursors in SQL.</p>
+        <div>
+            <p class="fs-5 mb-0">A Cursor is a database object that lets user acess & manipulate data row by row.</p>
+            <p class="fs-5 mb-0">a) Implicit Cursors:</p>
+            <p class="fs-5 mb-0">In PL/SQL, when we perform INSERT, UPDATE or DELETE operations, an implicit cursor is automatically created.</p>
+            <p class="fs-5 mb-0">This cursor holds the data to be inserted or identifies the rows to be updated or deleted.</p>
+            <p class="fs-5 mb-0">We can refer to this cursor as the SQL cursor in our code.</p>
+            <p class="fs-5 mb-0">b) Explicit Cursors:</p>
+            <p class="fs-5 mb-0">Created explicitly by users for custom operations.</p>
+            <p class="fs-5 mb-0">Used for fetching data row-by-row with complete control over the cursor life-cycle.</p>
+        </div>
+
+        <p #q16 class="module-question fs-5 mt-3">16. What is the difference between WHERE & HAVING clause in SQL?</p>
+        <div>
+            <p class="fs-5 mb-0">a) Where:</p>
+            <p class="fs-5 mb-0">WHERE is used to filter rows before grouping or aggregation.</p>
+            <p class="fs-5 mb-0">It works on individual rows from the table.</p>
+            <p class="fs-5 mb-0">Cannot be used with aggregate functions like SUM(), AVG(), COUNT() etc.</p>
+            <p class="fs-5"><u>Example:</u></p>
+            <div class="w-75">
+                <app-code-block [code]="whereClauseExample" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mb-0 mt-2">b) HAVING:</p>
+            <p class="fs-5 mb-0">HAVING is used to filter after grouping (i.e. after GROUP BY)</p>
+            <p class="fs-5">It works on aggregate results.</p>
+            <div class="w-75">
+                <app-code-block [code]="havingClauseExample" language="c#">
+                </app-code-block>
+            </div>
+        </div>
+
+        <p #q17 class="module-question fs-5 mt-3">17. What is Indexing in SQL?</p>
+        <div>
+            <p class="fs-5 mb-0">Indexing in SQL is a technique used to speed up data retrieval from a database table, without scanning every row. </p>
+            <p class="fs-5 mb-0">Indexes can drastically reduce read time, especially for SELECT queries with WHERE, JOIN, ORDER BY, or GROUP BY clauses.</p>
+            <p class="fs-5 mb-0">However, indexes also slow down write operations (INSERT, UPDATE, DELETE) and consume additional disk space.</p>
+            <p class="fs-5">When we define a column as Primary Key, the database automatically creates a unique index on it.</p>
+        </div>
+
+        <p #q18 class="module-question fs-5">18. How can we create Indexes?</p>
+        <div>
+            <p class="fs-5">Non-Cluestered Index:</p>
+            <div class="w-75">
+                <app-code-block [code]="nonClusteredIndexCode" language="c#">
+                </app-code-block>
+            </div>
+            <p class="fs-5 mt-2">Composite Index:</p>
+            <div class="w-75">
+                <app-code-block [code]="compositeIndexCode" language="c#">
+                </app-code-block>
+            </div>
+        </div>
+
+        <p #q19 class="module-question fs-5 mt-3">19. What are constraints in SQL?</p>
+        <div>
+            <p class="fs-5 mb-0">In SQL, constraints are rules applied to columns in a table to enforce data integrity and control the type of data that can be stored.</p>
+            <p class="fs-5 mb-0"><u>Types of Constraints in SQL</u></p>
+            <p class="fs-5 mb-0">a) NOT NULL: Ensures that a column cannot have NULL values.</p>
+            <p class="fs-5 mb-0">b) UNIQUE: Ensures that all values in a column are different.</p>
+            <p class="fs-5 mb-0">c) PRIMARY KEY: Combines NOT NULL + UNIQUE. Uniquely identifies each record. Only one per table.</p>
+            <p class="fs-5 mb-0">d) FOREIGN KEY: Enforces a link between two tables. The value must exist in the referenced table.</p>
+            <p class="fs-5 mb-0">e) CHECK: Ensures that values meet a specific condition.</p>
+            <p class="fs-5 mb-0">f) DEFAULT: Assigns a default value to a column when no value is provided.</p>
+        </div>
+    </div>
+</div>

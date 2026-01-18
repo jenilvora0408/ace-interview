@@ -23,6 +23,10 @@ export class ModuleOptionsComponent {
       case ".NET Core":
         this.router.navigate(['/dotnet-core']);
         break;
+
+      case "SQL":
+        this.router.navigate(['/sql']);
+        break;
     
       default:
         break;

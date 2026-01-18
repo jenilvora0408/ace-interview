@@ -3,3 +3,33 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500&display=swap');
+
+$module-heading: #878787;
+$dark-green: #0097a0;
+$bg: #eff4f5;
+
+.module-heading,
+.module-title {
+  color: $module-heading;
+}
+.module-question {
+  color: $dark-green;
+}
+.question-nav {
+  background-color: $bg;
+  height: 88vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+}
+.question-nav ul li {
+  cursor: pointer;
+}
+.content-scroll-container {
+  height: 88vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+table{
+  border: 1px solid $module-heading;
+}

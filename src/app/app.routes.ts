@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
 import { OopsComponent } from './modules/oops/oops.component';
 import { DotnetCoreComponent } from './modules/dotnet-core/dotnet-core.component';
+import { SqlComponent } from './modules/sql/sql.component';
 
 export const routes: Routes = [
     {
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path: 'dotnet-core',
         component: DotnetCoreComponent
+    },
+    {
+        path: 'sql',
+        component: SqlComponent
     }
 ];
