@@ -1,11 +1,88 @@
-$dark-green: #0097A0;
+$dark-green: #0097a0;
+$dark-green-hover: #007c84;
 $bg: #eff4f5;
+$border-color: #d8e5e7;
 
-p{
-    color: $dark-green;
-    font-family: 'Work Sans', sans-serif;
-    background-color: $bg;
-}
-span{
+.app-navbar {
+  background-color: $bg;
+  border-bottom: 1px solid $border-color;
+  padding: 0.65rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  z-index: 1030;
+
+  .brand-container {
     cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.88;
+    }
+
+    .brand-logo-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e0f0f1;
+      color: $dark-green;
+      border-radius: 8px;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1e293b;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.3px;
+
+      .brand-accent {
+        color: $dark-green;
+      }
+    }
+  }
+
+  .btn-home-link {
+    background-color: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #ffffff;
+      color: $dark-green;
+      border-color: $dark-green;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .app-navbar {
+    padding: 0.5rem 0;
+
+    .brand-container {
+      .brand-logo-icon {
+        width: 30px;
+        height: 30px;
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+      }
+    }
+
+    .btn-home-link {
+      padding: 0.3rem 0.55rem;
+      font-size: 0.8rem;
+    }
+  }
 }

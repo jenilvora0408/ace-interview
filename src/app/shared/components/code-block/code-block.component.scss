@@ -1,24 +1,77 @@
+$dark-green: #0097a0;
+$code-bg: #1e242b;
+$border: #334155;
+
 .code-container {
-    background-color: #2d2d2d; // GitHub Dark background
-    color: #d6e7d8;            // Light text color
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 12px;
-    position: relative;
-  
-    pre, code {
-      background: transparent !important;
-      color: inherit;
-      font-family: 'Fira Code', monospace;
-      font-size: 14px;
+  background-color: $code-bg;
+  border: 1px solid $border;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0.85rem 0 1.25rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  .code-header {
+    background-color: #171c22;
+    padding: 6px 12px;
+    border-bottom: 1px solid #2b3644;
+
+    .language-badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
     }
   }
-  
+
   .copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 12px;
-    z-index: 2;
+    font-size: 11.5px;
+    padding: 3px 10px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+
+    &.btn-copied {
+      background-color: #0097a0;
+      border-color: #0097a0;
+      color: #ffffff;
+    }
   }
-  
+
+  pre {
+    margin: 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    code {
+      background: transparent !important;
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .code-container {
+    margin: 0.65rem 0 1rem 0;
+    border-radius: 6px;
+
+    pre {
+      padding: 10px 12px;
+
+      code {
+        font-size: 12px;
+        line-height: 1.48;
+      }
+    }
+  }
+}

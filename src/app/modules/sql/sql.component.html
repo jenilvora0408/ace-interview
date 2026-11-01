@@ -1,46 +1,55 @@
-<div class="row g-0">
-    <!-- Question Navigation Section -->
-    <div class="question-nav mb-4 col-3 me-4 p-3">
-        <p class="fs-5">Questions</p>
-        <ul class="nav flex-column gap-2">
-            <li>
-                <a (click)="scrollToQuestion('q1')">1. What is Primary key & why is it important?</a>
-            </li>
-            <li>
-                <a (click)="scrollToQuestion('q2')">2. What is a Foreign key & how is it different from a Primary
-                    key?</a>
-            </li>
-            <li>
-                <a (click)="scrollToQuestion('q3')">3. What is the difference between DELETE & TRUNCATE?</a>
-            </li>
-            <li>
-                <a (click)="scrollToQuestion('q4')">4. What is the difference between 'char' & 'varchar' data types?</a>
-            </li>
-            <li>
-                <a (click)="scrollToQuestion('q5')">5. Explain SQL Joins in detail.</a>
-            </li>
-            <li>
-                <a (click)="scrollToQuestion('q6')">6. What is a transaction in SQL, and why is it important?</a>
-            </li>
-            <li><a (click)="scrollToQuestion('q7')">7. What is a Deadlock?</a></li>
-            <li><a (click)="scrollToQuestion('q8')">8. What is NOLOCK?</a></li>
-            <li><a (click)="scrollToQuestion('q9')">9. What is Stuff?</a></li>
-            <li><a (click)="scrollToQuestion('q10')">10. What are Stored Procedures?</a></li>
-            <li><a (click)="scrollToQuestion('q11')">11. What are Functions?</a></li>
-            <li><a (click)="scrollToQuestion('q12')">12. What are Views in SQL?</a></li>
-            <li><a (click)="scrollToQuestion('q13')">13. What is the difference between Stored Procedures & Functions?</a></li>
-            <li><a (click)="scrollToQuestion('q14')">14. Explain triggers in SQL.</a></li>
-            <li><a (click)="scrollToQuestion('q15')">15. Explain cursors in SQL.</a></li>
-            <li><a (click)="scrollToQuestion('q16')">16. What is the difference between WHERE & HAVING clause in SQL?</a></li>
-            <li><a (click)="scrollToQuestion('q17')">17. What is Indexing in SQL?</a></li>
-            <li><a (click)="scrollToQuestion('q18')">18. How can we create Indexes?</a></li>
-            <li><a (click)="scrollToQuestion('q19')">19. What are constraints in SQL?</a></li>
-        </ul>
+<!-- Mobile Sticky Question Navigator Bar -->
+<div class="mobile-question-bar d-lg-none">
+  <button 
+    type="button" 
+    class="btn-mobile-jump" 
+    (click)="toggleMobileNav()">
+    <span>📑 <strong>Questions ({{ questions.length }})</strong></span>
+    <span>{{ isMobileNavOpen ? '▲ Close' : '▼ Jump to' }}</span>
+  </button>
+  @if (isMobileNavOpen) {
+    <div class="mobile-nav-drawer">
+      <input 
+        type="text" 
+        class="form-control form-control-sm mb-2" 
+        placeholder="Filter questions..." 
+        [value]="searchQuery" 
+        (input)="onSearch($event)">
+      <ul class="nav flex-column gap-1">
+        @for (q of filteredQuestions; track q.id) {
+          <li>
+            <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+          </li>
+        }
+      </ul>
     </div>
+  }
+</div>
 
-    <!-- Content Section -->
-    <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
-        <p class="module-heading fs-4">Structured Query Language (SQL)</p>
+<div class="row g-0">
+  <!-- Desktop Question Navigation Section -->
+  <div class="question-nav col-lg-4 col-xl-3 p-3 d-none d-lg-block">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <span class="fw-bold text-secondary">Questions ({{ questions.length }})</span>
+    </div>
+    <input 
+      type="text" 
+      class="form-control form-control-sm mb-3" 
+      placeholder="Filter questions..." 
+      [value]="searchQuery" 
+      (input)="onSearch($event)">
+    <ul class="nav flex-column gap-1">
+      @for (q of filteredQuestions; track q.id) {
+        <li>
+          <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Content Section -->
+  <div #contentContainer class="col-12 col-lg-8 col-xl-9 content-scroll-container">
+    <p class="module-heading fs-4">Structured Query Language (SQL)</p>
         <p class="module-desc fs-5">
             SQL is a programming language used to manipulate & manage data in
             relational databases. It is used to communicate & connect with a database
@@ -472,12 +481,12 @@
         <div>
             <p class="fs-5">Non-Cluestered Index:</p>
             <div class="w-75">
-                <app-code-block [code]="nonClusteredIndexCode" language="c#">
+                <app-code-block [code]="nonClusteredIndexCode" language="sql">
                 </app-code-block>
             </div>
             <p class="fs-5 mt-2">Composite Index:</p>
             <div class="w-75">
-                <app-code-block [code]="compositeIndexCode" language="c#">
+                <app-code-block [code]="compositeIndexCode" language="sql">
                 </app-code-block>
             </div>
         </div>
@@ -492,6 +501,91 @@
             <p class="fs-5 mb-0">d) FOREIGN KEY: Enforces a link between two tables. The value must exist in the referenced table.</p>
             <p class="fs-5 mb-0">e) CHECK: Ensures that values meet a specific condition.</p>
             <p class="fs-5 mb-0">f) DEFAULT: Assigns a default value to a column when no value is provided.</p>
+        </div>
+    
+        <p #q20 class="module-question fs-5 mt-3">20. How to find the 2nd Highest (or N-th Highest) Salary in SQL?</p>
+        <div>
+            <p class="fs-5 mb-1"><u>Approach 1: Using Subquery & MAX() (Most common for 2nd highest)</u></p>
+            <p class="fs-5 mb-1">Find the highest salary that is less than the overall maximum salary:</p>
+            <div class="w-75">
+                <app-code-block [code]="nthHighestSalarySubqueryCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mt-3 mb-1"><u>Approach 2: Using DENSE_RANK() & CTE (Recommended for N-th Highest)</u></p>
+            <p class="fs-5 mb-1"><code>DENSE_RANK()</code> gracefully handles duplicate salaries without skipping rank numbers:</p>
+            <div class="w-75">
+                <app-code-block [code]="nthHighestSalaryDenseRankCode" language="sql"></app-code-block>
+            </div>
+        </div>
+
+        <p #q21 class="module-question fs-5 mt-3">21. How to find and display duplicate records in a table?</p>
+        <div>
+            <p class="fs-5 mb-1">To identify duplicate values, use <code>GROUP BY</code> with <code>HAVING COUNT(*) > 1</code>:</p>
+            <div class="w-75">
+                <app-code-block [code]="findDuplicatesCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mt-2 mb-1">To view all column details for those duplicate records, wrap in a subquery:</p>
+            <div class="w-75">
+                <app-code-block [code]="findAllDuplicateRowsCode" language="sql"></app-code-block>
+            </div>
+        </div>
+
+        <p #q22 class="module-question fs-5 mt-3">22. How to delete duplicate records while keeping one original record?</p>
+        <div>
+            <p class="fs-5 mb-1">Use a Common Table Expression (CTE) with the <code>ROW_NUMBER()</code> window function partitioned by the duplicate key:</p>
+            <div class="w-75">
+                <app-code-block [code]="deleteDuplicatesCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mb-0"><u>How this works:</u></p>
+            <p class="fs-5 mb-0">&bull; <code>PARTITION BY Email</code> groups duplicate entries together.</p>
+            <p class="fs-5 mb-0">&bull; <code>ORDER BY Id ASC</code> assigns <code>RowNum = 1</code> to the first/original row and <code>RowNum > 1</code> to subsequent duplicate copies.</p>
+            <p class="fs-5">&bull; <code>DELETE FROM DuplicateCTE WHERE RowNum > 1</code> safely purges only the duplicates.</p>
+        </div>
+
+        <p #q23 class="module-question fs-5 mt-3">23. How to find employees who earn more than their managers?</p>
+        <div>
+            <p class="fs-5 mb-1">This query is a classic test of a <strong>SELF JOIN</strong>, joining the Employee table onto itself:</p>
+            <div class="w-75">
+                <app-code-block [code]="employeeManagerSelfJoinCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mb-0">We alias the table twice: <code>e</code> represents the employee, and <code>m</code> represents the manager joined via <code>e.ManagerId = m.EmployeeId</code>.</p>
+        </div>
+
+        <p #q24 class="module-question fs-5 mt-3">24. How to find departments that have no employees?</p>
+        <div>
+            <p class="fs-5 mb-1"><u>Method 1: Using LEFT JOIN and IS NULL</u></p>
+            <div class="w-75">
+                <app-code-block [code]="deptNoEmployeesJoinCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mt-3 mb-1"><u>Method 2: Using NOT EXISTS (Often faster on large datasets)</u></p>
+            <div class="w-75">
+                <app-code-block [code]="deptNoEmployeesExistsCode" language="sql"></app-code-block>
+            </div>
+        </div>
+
+        <p #q25 class="module-question fs-5 mt-3">25. How to get the highest paid employee in each department?</p>
+        <div>
+            <p class="fs-5 mb-1">Partition the data by department and rank employees by salary descending using <code>DENSE_RANK()</code> or <code>ROW_NUMBER()</code>:</p>
+            <div class="w-75">
+                <app-code-block [code]="topEarnerPerDeptCode" language="sql"></app-code-block>
+            </div>
+        </div>
+
+        <p #q26 class="module-question fs-5 mt-3">26. How to calculate a Running Total (Cumulative Sum) in SQL?</p>
+        <div>
+            <p class="fs-5 mb-1">Use the <code>SUM()</code> aggregate function with the <code>OVER (ORDER BY ...)</code> window frame:</p>
+            <div class="w-75">
+                <app-code-block [code]="runningTotalCode" language="sql"></app-code-block>
+            </div>
+            <p class="fs-5 mb-0"><code>ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</code> specifies that for each row, the window sum begins at the first row and accumulates up to the current row.</p>
+        </div>
+
+        <p #q27 class="module-question fs-5 mt-3">27. What is the difference between UNION and UNION ALL with practical query examples?</p>
+        <div>
+            <p class="fs-5 mb-0">&bull; <strong>UNION</strong>: Combines results from two queries and eliminates duplicate rows. It performs an internal DISTINCT sort operation, which is slower.</p>
+            <p class="fs-5 mb-1">&bull; <strong>UNION ALL</strong>: Combines results and retains all rows including duplicates. It does not sort or deduplicate, making it significantly faster.</p>
+            <div class="w-75">
+                <app-code-block [code]="unionVsUnionAllCode" language="sql"></app-code-block>
+            </div>
         </div>
     </div>
 </div>

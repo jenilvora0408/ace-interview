@@ -1,35 +1,326 @@
-/* You can add global styles to this file, and also import other style files */
-
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap');
 
-$module-heading: #878787;
-$dark-green: #0097a0;
-$bg: #eff4f5;
+// Design Tokens
+$primary-teal: #0097a0;
+$primary-teal-hover: #007c84;
+$primary-teal-light: #e6f5f6;
+$primary-teal-border: rgba(0, 151, 160, 0.25);
+$bg-app: #f8fafc;
+$bg-sidebar: #eff4f5;
+$text-main: #1e293b;
+$text-muted: #64748b;
+$border-color: #e2e8f0;
 
-.module-heading,
-.module-title {
-  color: $module-heading;
-}
-.module-question {
-  color: $dark-green;
-}
-.question-nav {
-  background-color: $bg;
-  height: 88vh;
-  overflow-y: auto;
-  position: sticky;
-  top: 0;
-}
-.question-nav ul li {
-  cursor: pointer;
-}
-.content-scroll-container {
-  height: 88vh;
-  overflow-y: auto;
+// Base Styles
+html {
   scroll-behavior: smooth;
 }
-table{
-  border: 1px solid $module-heading;
+
+body {
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: $text-main;
+  background-color: $bg-app;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+// Module Typography & Colors
+.module-heading {
+  color: $primary-teal;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.5rem;
+}
+
+.module-title {
+  color: $text-muted;
+}
+
+.module-desc {
+  color: #475569;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $border-color;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.module-question {
+  color: $primary-teal;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-left: 10px;
+  border-left: 3.5px solid $primary-teal;
+  scroll-margin-top: 75px;
+}
+
+// Desktop Layout (>= 992px)
+@media (min-width: 992px) {
+  .question-nav {
+    background-color: $bg-sidebar;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    position: sticky;
+    top: 60px;
+    border-right: 1px solid #dbe6e8;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #c8d8db;
+      border-radius: 4px;
+    }
+
+    ul.nav li a {
+      color: #334155;
+      font-size: 0.9rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+      display: block;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #dceef0;
+        color: $primary-teal;
+        padding-left: 0.85rem;
+      }
+    }
+  }
+
+  .content-scroll-container {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 1.75rem 2.5rem 4rem 2rem;
+
+    .w-75 {
+      width: 85% !important;
+      max-width: 850px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  }
+
+  // Desktop Font Sizes
+  .fs-3 {
+    font-size: 1.75rem !important;
+  }
+  .fs-4 {
+    font-size: 1.3rem !important;
+  }
+  .fs-5 {
+    font-size: 1.025rem !important;
+    line-height: 1.68 !important;
+  }
+}
+
+// Tablet & Mobile Layout (< 992px)
+@media (max-width: 991px) {
+  .question-nav {
+    display: none; // Hidden in side column on mobile, handled by mobile toolbar drawer
+  }
+
+  .content-scroll-container {
+    height: auto !important;
+    overflow-y: visible !important;
+    padding: 1rem 1rem 3rem 1rem !important;
+
+    .w-75 {
+      width: 100% !important;
+    }
+  }
+
+  // Mobile sticky navigator bar
+  .mobile-question-bar {
+    position: sticky;
+    top: 52px;
+    z-index: 1020;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+    .btn-mobile-jump {
+      background-color: $primary-teal-light;
+      color: $primary-teal;
+      border: 1px solid $primary-teal-border;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:active {
+        background-color: #d3edf0;
+      }
+    }
+
+    .mobile-nav-drawer {
+      max-height: 65vh;
+      overflow-y: auto;
+      background: #ffffff;
+      border: 1px solid $border-color;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+      ul.nav li a {
+        color: #334155;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.65rem;
+        border-radius: 6px;
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:active, &:hover {
+          background-color: $primary-teal-light;
+          color: $primary-teal;
+        }
+      }
+    }
+  }
+
+  // MOBILE FONT SIZE REDUCTION - explicitly tuned for mobile readability
+  .fs-3 {
+    font-size: 1.35rem !important;
+  }
+  .fs-4 {
+    font-size: 1.15rem !important;
+  }
+  .fs-5 {
+    font-size: 0.925rem !important; // Reduced from 1.25rem (20px) to ~14.8px for mobile
+    line-height: 1.58 !important;
+  }
+
+  .module-heading {
+    font-size: 1.35rem !important;
+  }
+
+  .module-desc {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    p {
+      font-size: 0.925rem !important;
+    }
+  }
+
+  .module-question {
+    font-size: 1.08rem !important;
+    margin-top: 1.4rem;
+    margin-bottom: 0.45rem;
+    padding-left: 8px;
+    border-left-width: 3px;
+    scroll-margin-top: 110px;
+  }
+
+  ul, ol {
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+  }
+}
+
+// Small Mobile (< 480px)
+@media (max-width: 480px) {
+  .content-scroll-container {
+    padding: 0.75rem 0.75rem 2.5rem 0.75rem !important;
+
+    .w-75 {
+      width: 100% !important;
+    }
+  }
+
+  .fs-3 {
+    font-size: 1.25rem !important;
+  }
+  .fs-4 {
+    font-size: 1.05rem !important;
+  }
+  .fs-5 {
+    font-size: 0.885rem !important; // ~14px for very small screens
+    line-height: 1.52 !important;
+  }
+
+  .module-question {
+    font-size: 1rem !important;
+  }
+}
+
+// Responsive Table Styling
+.table-responsive,
+table.table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+  thead tr th {
+    background-color: #eff4f5;
+    color: #007077;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 2px solid #d2e4e6;
+  }
+
+  tbody tr td {
+    padding: 0.6rem 0.85rem;
+    color: #334155;
+    font-size: 0.925rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  table.table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    thead tr th {
+      font-size: 0.825rem !important;
+      padding: 0.5rem 0.65rem;
+      white-space: nowrap;
+    }
+
+    tbody tr td {
+      font-size: 0.825rem !important;
+      padding: 0.5rem 0.65rem;
+    }
+  }
 }

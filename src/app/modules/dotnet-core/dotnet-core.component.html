@@ -1,98 +1,54 @@
+<!-- Mobile Sticky Question Navigator Bar -->
+<div class="mobile-question-bar d-lg-none">
+  <button 
+    type="button" 
+    class="btn-mobile-jump" 
+    (click)="toggleMobileNav()">
+    <span>📑 <strong>Questions ({{ questions.length }})</strong></span>
+    <span>{{ isMobileNavOpen ? '▲ Close' : '▼ Jump to' }}</span>
+  </button>
+  @if (isMobileNavOpen) {
+    <div class="mobile-nav-drawer">
+      <input 
+        type="text" 
+        class="form-control form-control-sm mb-2" 
+        placeholder="Filter questions..." 
+        [value]="searchQuery" 
+        (input)="onSearch($event)">
+      <ul class="nav flex-column gap-1">
+        @for (q of filteredQuestions; track q.id) {
+          <li>
+            <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>
+
 <div class="row g-0">
-  <!-- Question Navigation Section -->
-  <div class="question-nav mb-4 col-3 me-4 p-3">
-    <ul class="nav flex-column gap-2">
-      <li>
-        <a (click)="scrollToQuestion('q1')">1. Which .NET Core architecture do you use?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q2')">2. What is Repository Pattern, and how does it relate to Entity
-          Framework?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q3')">3. What is the purpose of Program.cs file in .NET Core?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q4')">4. What is the difference between Authentication & Authorization?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q5')">5. What are the different ways for authentication in .NET Core?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q6')">6. Explain the difference between controller & an API.</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q7')">7. What is Inversion of Control?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q8')">8. What is Dependency Injection in C#?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q9')">9. Why do we need Dependency Injection?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q10')">10. How to create Dependency Injection in .NET Core?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q11')">11. In how many ways, can we achieve Dependency Injection in C#?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q12')">12. Explain AddSingleton, AddScoped & AddTransient.</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q13')">13. How to handle error globally in .NET Core?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q14')">14. What is the use of Middleware in .NET Core?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q15')">15. What is the difference between Middleware & Filters?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q16')">16. What is Entity Framework?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q17')">17. What is Rate Limiter?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q18')">18. Explain async & await keywords.</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q19')">19. What is the difference between List & IEnumerable?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q20')">20. What is the difference between IEnumerable & IQueryable?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q21')">21. What is serialization & why is it used in C#?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q22')">22. What is the difference between throw & throw ex?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q23')">23. What is an extension method in C#?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q24')">24. What is Eager loading & Lazy Loading in Entity Framework?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q25')">25. What are Action Filters? How many types of action filters are
-          there in MVC?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q26')">26. What is Kestrel?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q27')">27. What is API Versioning?</a>
-      </li>
-      <li>
-        <a (click)="scrollToQuestion('q28')">28. What is the difference between ref & out parameters?</a>
-      </li>
+  <!-- Desktop Question Navigation Section -->
+  <div class="question-nav col-lg-4 col-xl-3 p-3 d-none d-lg-block">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <span class="fw-bold text-secondary">Questions ({{ questions.length }})</span>
+    </div>
+    <input 
+      type="text" 
+      class="form-control form-control-sm mb-3" 
+      placeholder="Filter questions..." 
+      [value]="searchQuery" 
+      (input)="onSearch($event)">
+    <ul class="nav flex-column gap-1">
+      @for (q of filteredQuestions; track q.id) {
+        <li>
+          <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+        </li>
+      }
     </ul>
   </div>
 
   <!-- Content Section -->
-  <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
+  <div #contentContainer class="col-12 col-lg-8 col-xl-9 content-scroll-container">
     <div class="module-heading fs-4">.NET Core</div>
     <div class="module-desc">
       <p class="fs-5">

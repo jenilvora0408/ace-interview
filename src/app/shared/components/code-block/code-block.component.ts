@@ -11,6 +11,7 @@ import hljs from 'highlight.js';
 export class CodeBlockComponent {
   @Input() code: string = '';
   @Input() language: string = 'typescript';
+  copied: boolean = false;
 
   constructor(private elRef: ElementRef) {}
 
@@ -23,8 +24,12 @@ export class CodeBlockComponent {
   }
 
   copyCode() {
+    if (!this.code) return;
     navigator.clipboard.writeText(this.code).then(() => {
-      alert('Code copied!');
+      this.copied = true;
+      setTimeout(() => {
+        this.copied = false;
+      }, 2000);
     });
   }
 }

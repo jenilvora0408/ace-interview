@@ -1,35 +1,54 @@
+<!-- Mobile Sticky Question Navigator Bar -->
+<div class="mobile-question-bar d-lg-none">
+  <button 
+    type="button" 
+    class="btn-mobile-jump" 
+    (click)="toggleMobileNav()">
+    <span>📑 <strong>Questions ({{ questions.length }})</strong></span>
+    <span>{{ isMobileNavOpen ? '▲ Close' : '▼ Jump to' }}</span>
+  </button>
+  @if (isMobileNavOpen) {
+    <div class="mobile-nav-drawer">
+      <input 
+        type="text" 
+        class="form-control form-control-sm mb-2" 
+        placeholder="Filter questions..." 
+        [value]="searchQuery" 
+        (input)="onSearch($event)">
+      <ul class="nav flex-column gap-1">
+        @for (q of filteredQuestions; track q.id) {
+          <li>
+            <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>
+
 <div class="row g-0">
-  <!-- Question Navigation Section -->
-  <div class="question-nav mb-4 col-3 me-4 p-3">
-    <p class="fs-5">Questions</p>
-    <ul class="nav flex-column gap-2">
-      <li>
-        <a (click)="scrollToQuestion('q1')">1. What is the need for OOPs?</a>
-      </li>
-      <li><a (click)="scrollToQuestion('q2')">2. What is a Class?</a></li>
-      <li><a (click)="scrollToQuestion('q3')">3. What is an Object?</a></li>
-      <li>
-        <a (click)="scrollToQuestion('q4')">4. What are the main features/pillars of OOPS?</a>
-      </li>
-      <li><a (click)="scrollToQuestion('q5')">5. What is encapsulation?</a></li>
-      <li>
-        <a (click)="scrollToQuestion('q6')">6. How can we implement Encapsulation?</a>
-      </li>
-      <li><a (click)="scrollToQuestion('q7')">7. What is Polymorphism?</a></li>
-      <li><a (click)="scrollToQuestion('q8')">8. Explain Compile Time Polymorphism.</a></li>
-      <li><a (click)="scrollToQuestion('q9')">9. Explain method overloading with example.</a></li>
-      <li><a (click)="scrollToQuestion('q10')">10. Explain Runtime Polymorphism.</a></li>
-      <li><a (click)="scrollToQuestion('q11')">11. Explain Method Overriding with example.</a></li>
-      <li><a (click)="scrollToQuestion('q12')">12. What is meant by Inheritance?</a></li>
-      <li><a (click)="scrollToQuestion('q13')">13. Are there any limitations of Inheritance?</a></li>
-      <li><a (click)="scrollToQuestion('q14')">14. How many types of Inheritance are there in C#?</a></li>
-      <li><a (click)="scrollToQuestion('q15')">15. What do you mean by Abstraction?</a></li>
-      <li><a (click)="scrollToQuestion('q16')">16. What is the difference between Abstract Class & Interface?</a></li>
+  <!-- Desktop Question Navigation Section -->
+  <div class="question-nav col-lg-4 col-xl-3 p-3 d-none d-lg-block">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <span class="fw-bold text-secondary">Questions ({{ questions.length }})</span>
+    </div>
+    <input 
+      type="text" 
+      class="form-control form-control-sm mb-3" 
+      placeholder="Filter questions..." 
+      [value]="searchQuery" 
+      (input)="onSearch($event)">
+    <ul class="nav flex-column gap-1">
+      @for (q of filteredQuestions; track q.id) {
+        <li>
+          <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+        </li>
+      }
     </ul>
   </div>
 
   <!-- Content Section -->
-  <div #contentContainer class="col-8 ms-1 content-scroll-container pe-3">
+  <div #contentContainer class="col-12 col-lg-8 col-xl-9 content-scroll-container">
     <p class="module-heading fs-4">Object Oriented Programming System (OOPS)</p>
     <p class="module-desc fs-5">
       OOPS refers to Object Oriented Programming. It is the programming paradigm

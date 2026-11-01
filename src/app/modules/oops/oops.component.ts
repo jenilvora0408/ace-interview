@@ -266,13 +266,55 @@ class Program
 }
 `;
 
-  constructor(){}
+  ngOnInit(): void {}
 
-  ngOnInit():void{
+  
+  isMobileNavOpen: boolean = false;
+  searchQuery: string = '';
 
+  questions: Array<{ id: string; title: string }> = [
+    { id: 'q1', title: '1. What is the need for OOPs?' },
+    { id: 'q2', title: '2. What is a Class?' },
+    { id: 'q3', title: '3. What is an Object?' },
+    { id: 'q4', title: '4. What are the main features/pillars of OOPS?' },
+    { id: 'q5', title: '5. What is encapsulation?' },
+    { id: 'q6', title: '6. How can we implement Encapsulation?' },
+    { id: 'q7', title: '7. What is Polymorphism?' },
+    { id: 'q8', title: '8. Explain Compile Time Polymorphism.' },
+    { id: 'q9', title: '9. Explain method overloading with example.' },
+    { id: 'q10', title: '10. Explain Runtime Polymorphism.' },
+    { id: 'q11', title: '11. Explain Method Overriding with example.' },
+    { id: 'q12', title: '12. What is meant by Inheritance?' },
+    { id: 'q13', title: '13. Are there any limitations of Inheritance?' },
+    { id: 'q14', title: '14. How many types of Inheritance are there in C#?' },
+    { id: 'q15', title: '15. What do you mean by Abstraction?' },
+    { id: 'q16', title: '16. What is the difference between Abstract Class & Interface?' }
+  ];
+
+  filteredQuestions: Array<{ id: string; title: string }> = [];
+
+  constructor() {
+    this.filteredQuestions = [...this.questions];
+  }
+
+  toggleMobileNav(): void {
+    this.isMobileNavOpen = !this.isMobileNavOpen;
+  }
+
+  onSearch(event: Event): void {
+    const query = (event.target as HTMLInputElement).value.toLowerCase().trim();
+    this.searchQuery = query;
+    if (!query) {
+      this.filteredQuestions = [...this.questions];
+    } else {
+      this.filteredQuestions = this.questions.filter(q =>
+        q.title.toLowerCase().includes(query)
+      );
+    }
   }
 
   scrollToQuestion(id: string) {
+    this.isMobileNavOpen = false;
     const questionMap: { [key: string]: ElementRef } = {
       q1: this.q1,
       q2: this.q2,
@@ -293,12 +335,15 @@ class Program
     };
 
     const target = questionMap[id];
-    if (target && this.contentContainer) {
-      const container = this.contentContainer.nativeElement;
-      const targetElement = target.nativeElement;
-      const offsetTop = targetElement.offsetTop;
-
-      container.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    if (target) {
+      if (window.innerWidth < 992) {
+        target.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (this.contentContainer) {
+        const container = this.contentContainer.nativeElement;
+        const targetElement = target.nativeElement;
+        const offsetTop = targetElement.offsetTop;
+        container.scrollTo({ top: offsetTop - 15, behavior: 'smooth' });
+      }
     }
   }
 }
