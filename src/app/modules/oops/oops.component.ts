@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CodeBlockComponent } from '../../shared/components/code-block/code-block.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-oops',
@@ -8,7 +9,7 @@ import { CodeBlockComponent } from '../../shared/components/code-block/code-bloc
   templateUrl: './oops.component.html',
   styleUrl: './oops.component.scss'
 })
-export class OopsComponent {
+export class OopsComponent implements OnInit {
   @ViewChild('contentContainer') contentContainer!: ElementRef;
 
   @ViewChild('q1') q1!: ElementRef;
@@ -266,9 +267,7 @@ class Program
 }
 `;
 
-  ngOnInit(): void {}
 
-  
   isMobileNavOpen: boolean = false;
   searchQuery: string = '';
 
@@ -293,8 +292,47 @@ class Program
 
   filteredQuestions: Array<{ id: string; title: string }> = [];
 
-  constructor() {
+  constructor(private seo: SeoService) {
     this.filteredQuestions = [...this.questions];
+  }
+
+  ngOnInit(): void {
+    this.seo.updatePageSeo({
+      title: 'Object-Oriented Programming (OOP) Interview Questions & Answers | Ace Interview',
+      description: 'Master OOP interview concepts: 4 pillars of OOP (Encapsulation, Abstraction, Inheritance, Polymorphism), method overloading vs overriding, and abstract class vs interface.',
+      keywords: 'oops interview questions, object oriented programming interview, encapsulation abstraction inheritance polymorphism, method overloading vs overriding, abstract class vs interface',
+      url: '/oops',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What are the 4 fundamental pillars of OOP?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The four fundamental pillars of Object-Oriented Programming are: Encapsulation (bundling data and methods that operate on that data while restricting direct access), Abstraction (hiding complex internal implementation details and exposing only essential interfaces), Inheritance (enabling a class to inherit features and behaviors from another class for code reuse), and Polymorphism (enabling objects to take multiple forms through overloading and overriding).'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between Method Overloading and Method Overriding?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Method Overloading (Compile-Time Polymorphism) defines multiple methods in the same class with identical names but differing parameter types or counts. Method Overriding (Runtime Polymorphism) allows a derived class to provide a specific implementation of a virtual or abstract method defined in its base class.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between an Abstract Class and an Interface?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'An Abstract Class can have both abstract methods (without bodies) and concrete methods (with default implementations) as well as member state/fields; a class can only inherit from one abstract class. An Interface traditionally defines a contract of method signatures without state (though modern C# allows default interface methods); a class can implement multiple interfaces.'
+            }
+          }
+        ]
+      }
+    });
   }
 
   toggleMobileNav(): void {

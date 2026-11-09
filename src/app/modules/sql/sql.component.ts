@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CodeBlockComponent } from '../../shared/components/code-block/code-block.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-sql',
@@ -221,11 +222,56 @@ SELECT Email FROM ArchivedCustomers;`;
 
   filteredQuestions: Array<{ id: string; title: string }> = [];
 
-  constructor() {
+  constructor(private seo: SeoService) {
     this.filteredQuestions = [...this.questions];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seo.updatePageSeo({
+      title: 'Top 27+ SQL & Database Interview Questions and Answers | Ace Interview',
+      description: 'Ace SQL and database interviews with expert explanations of Indexes, ACID transactions, Isolation Levels, Joins, Triggers, CTEs, and Stored Procedures.',
+      keywords: 'sql interview questions, database interview questions, sql joins, clustered index vs nonclustered index, acid properties, isolation levels dirty read, stored procedure vs function',
+      url: '/sql',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is the difference between Clustered and Non-Clustered Index?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'A Clustered Index physically reorders the actual table rows on disk to match the index key; a table can have only one clustered index. A Non-Clustered Index creates a separate B-tree structure holding pointers/row locators back to the table data; a table can have multiple non-clustered indexes.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What are the ACID Properties in DBMS?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'ACID guarantees database transaction reliability: Atomicity (all-or-nothing execution), Consistency (data satisfies all validation rules/constraints before and after), Isolation (concurrent transactions execute independently without interference), and Durability (committed changes persist permanently even after system crashes).'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between WHERE and HAVING clause in SQL?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'WHERE filters individual rows before grouping (GROUP BY) takes place and cannot contain aggregate functions. HAVING filters aggregated groups after GROUP BY and works directly with aggregate functions like COUNT, SUM, AVG.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What are the Transaction Isolation Levels in SQL?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'The standard isolation levels from lowest to highest isolation are: Read Uncommitted (allows dirty reads), Read Committed (prevents dirty reads, allows non-repeatable reads), Repeatable Read (prevents non-repeatable reads, allows phantom reads), and Serializable (highest isolation, completely serial execution).'
+            }
+          }
+        ]
+      }
+    });
+  }
 
   toggleMobileNav(): void {
     this.isMobileNavOpen = !this.isMobileNavOpen;

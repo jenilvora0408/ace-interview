@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CodeBlockComponent } from '../../shared/components/code-block/code-block.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-architecture-fundamentals',
@@ -47,8 +48,55 @@ public class Notification
     }
 }`;
 
+  constructor(private seo: SeoService) {}
+
   ngOnInit(): void {
     this.filteredQuestions = [...this.questions];
+
+    this.seo.updatePageSeo({
+      title: 'Software Architecture & System Design Interview Questions | Ace Interview',
+      description: 'Ace software engineering architecture interviews: SDLC phases, SOLID principles, HTTP vs HTTPS TLS handshake, REST principles, Monolith vs Microservices architectures.',
+      keywords: 'software architecture interview questions, system design interview questions, solid principles, monolith vs microservices, modular monolith, rest api principles, http vs https',
+      url: '/architecture-fundamentals',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What are the SOLID Principles?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'SOLID is an acronym for 5 design principles: Single Responsibility Principle (SRP), Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), and Dependency Inversion Principle (DIP). They ensure software is maintainable, scalable, and testable.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between HTTP and HTTPS?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'HTTP transmits plain-text data over port 80. HTTPS encrypts communication over port 443 using TLS/SSL cryptographic protocols, guaranteeing confidentiality, data integrity, and authentication through digital certificates.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is REST and RESTful API?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'REST (Representational State Transfer) is an architectural style for distributed hypermedia systems. Key constraints include: Client-Server architecture, Statelessness, Cacheability, Layered System, Uniform Interface (standard HTTP verbs), and optional Code on Demand.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'Monolith vs Microservices: When should you use which?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'A Monolith bundles all business domains into a single codebase and deployment unit; it is ideal for early-stage products, small teams, and fast initial iteration. Microservices divide capabilities into independently deployable bounded contexts with decentralized data; it suits large teams needing autonomous release cycles despite higher operational overhead.'
+            }
+          }
+        ]
+      }
+    });
   }
 
   toggleMobileNav(): void {

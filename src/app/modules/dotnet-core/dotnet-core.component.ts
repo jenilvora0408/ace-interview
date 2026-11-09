@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CodeBlockComponent } from '../../shared/components/code-block/code-block.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-dotnet-core',
@@ -232,11 +233,72 @@ GetValues(out x, out y);
 Console.WriteLine($"{x}, {y}"); // Output: 1, 2
 `;
 
-  constructor() {
+  constructor(private seo: SeoService) {
     this.filteredQuestions = [...this.questions];
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.seo.updatePageSeo({
+      title: 'Top 28+ .NET Core & C# Interview Questions and Answers | Ace Interview',
+      description: 'Comprehensive, battle-tested .NET Core and C# interview questions covering Dependency Injection, Middleware, EF Core, Async/Await, Kestrel, and CLR internals.',
+      keywords: 'dotnet core interview questions, c# interview questions, asp.net core interview, dependency injection c#, addsingleton addscoped addtransient, middleware vs filters, entity framework core interview, async await c#',
+      url: '/dotnet-core',
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is the purpose of Program.cs file in .NET Core?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Program.cs is the entry point of a .NET Core application. It configures the WebApplication builder, registers services into the Dependency Injection (DI) container, sets up configuration providers, and builds the HTTP request processing pipeline (middleware).'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between Authentication & Authorization?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Authentication is the process of verifying who a user is (identity confirmation), typically using credentials like username/password or JWT tokens. Authorization is the process of determining what permissions or resources the authenticated user is allowed to access.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'Explain AddSingleton, AddScoped & AddTransient in .NET Core.',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Transient creates a new instance every time a service is requested. Scoped creates a single instance per client HTTP request. Singleton creates a single instance the first time it is requested and shares that same instance across the entire application lifetime.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between Middleware & Filters in ASP.NET Core?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Middleware operates globally at the raw HTTP request/response pipeline level before routing hits MVC controllers. Filters operate within the MVC routing pipeline and have access to MVC context like ActionArguments, ModelState, and ActionDescriptor.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between IEnumerable and IQueryable?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'IEnumerable executes queries in-memory on the client side (LINQ to Objects). IQueryable converts LINQ expressions into an expression tree and executes SQL queries out-of-process on the database server (LINQ to Entities), filtering records before transferring data over the network.'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the difference between throw and throw ex in C#?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'throw preserves the original exception stack trace from where the exception originated. throw ex resets the stack trace to the current catch block, losing the original root cause and line number where the error actually occurred.'
+            }
+          }
+        ]
+      }
+    });
+  }
 
   toggleMobileNav(): void {
     this.isMobileNavOpen = !this.isMobileNavOpen;

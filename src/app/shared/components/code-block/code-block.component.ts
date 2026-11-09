@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import hljs from 'highlight.js';
 
 @Component({
@@ -8,28 +9,34 @@ import hljs from 'highlight.js';
   templateUrl: './code-block.component.html',
   styleUrl: './code-block.component.scss'
 })
-export class CodeBlockComponent {
+export class CodeBlockComponent implements AfterViewInit {
   @Input() code: string = '';
   @Input() language: string = 'typescript';
   copied: boolean = false;
 
-  constructor(private elRef: ElementRef) {}
+  constructor(
+    private elRef: ElementRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngAfterViewInit() {
-    const codeEl = this.elRef.nativeElement.querySelector('pre code');
-    if (codeEl) {
-      codeEl.textContent = this.code.trim();
-      hljs.highlightElement(codeEl);
+    if (isPlatformBrowser(this.platformId)) {
+      const codeEl = this.elRef.nativeElement.querySelector('pre code');
+      if (codeEl) {
+        hljs.highlightElement(codeEl);
+      }
     }
   }
 
   copyCode() {
     if (!this.code) return;
-    navigator.clipboard.writeText(this.code).then(() => {
-      this.copied = true;
-      setTimeout(() => {
-        this.copied = false;
-      }, 2000);
-    });
+    if (isPlatformBrowser(this.platformId) && navigator?.clipboard) {
+      navigator.clipboard.writeText(this.code).then(() => {
+        this.copied = true;
+        setTimeout(() => {
+          this.copied = false;
+        }, 2000);
+      });
+    }
   }
 }

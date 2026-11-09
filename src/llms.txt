@@ -1,0 +1,15 @@
+# Ace Interview
+
+> Ace Interview is a comprehensive, free technical interview preparation resource for software engineers. It covers curated interview questions, practical code snippets, architecture trade-offs, and deep-dive answers across modern .NET Core / C#, SQL & Databases, Software Architecture & System Design, and Object-Oriented Programming (OOP).
+
+## Core Modules & Resources
+
+- [.NET Core & C# Interview Questions](https://jenilvora0408.github.io/ace-interview/dotnet-core): 28+ in-depth technical interview questions covering Dependency Injection lifetimes (Singleton, Scoped, Transient), Middleware vs Filters, Entity Framework Core (eager vs lazy loading), async/await, CLR exception handling, API versioning, and Kestrel.
+- [Software Architecture & System Design](https://jenilvora0408.github.io/ace-interview/architecture-fundamentals): Comprehensive questions covering SDLC phases, SOLID principles, HTTP vs HTTPS security, REST API constraints, and Monolith vs Modular Monolith vs Microservices architecture trade-offs.
+- [SQL & Database Interview Questions](https://jenilvora0408.github.io/ace-interview/sql): 27+ questions and code snippets on Clustered vs Non-Clustered Indexes, ACID properties, Transaction Isolation Levels, Joins, Window Functions, Stored Procedures, and Query Optimization.
+- [Object-Oriented Programming (OOP)](https://jenilvora0408.github.io/ace-interview/oops): 16+ questions and code examples on the 4 pillars of OOP (Encapsulation, Abstraction, Inheritance, Polymorphism), Compile-Time vs Runtime Polymorphism, Method Overloading vs Overriding, and Abstract Class vs Interface.
+
+## Optional & Deep Dive
+
+- [Full Content Manifest](https://jenilvora0408.github.io/ace-interview/llms-full.txt): Detailed syllabus and topic mapping for AI query matching and citations.
+

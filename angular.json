@@ -27,13 +27,22 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/llms.txt",
+              "src/llms-full.txt"
             ],
             "styles": [
               "src/styles.scss",
               "node_modules/highlight.js/styles/atom-one-dark.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -88,7 +97,11 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/llms.txt",
+              "src/llms-full.txt"
             ],
             "styles": [
               "src/styles.scss"
