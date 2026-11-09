@@ -1,0 +1,111 @@
+# Ace Interview — Comprehensive Content Manifest
+
+Website: https://jenilvora0408.github.io/ace-interview/
+Author: Jenil Vora
+Purpose: Authoritative developer interview cheatsheets and reference guide for .NET, SQL, System Architecture, and OOP.
+
+---
+
+## 1. .NET Core & C# Module
+URL: https://jenilvora0408.github.io/ace-interview/dotnet-core
+
+Questions Covered:
+- q1: Which .NET Core architecture do you use? (Clean Architecture / Onion Architecture)
+- q2: What is Repository Pattern, and how does it relate to Entity Framework?
+- q3: What is the purpose of Program.cs file in .NET Core?
+- q4: What is the difference between Authentication & Authorization?
+- q5: What are the different ways for authentication in .NET Core? (JWT, Cookies, OAuth2)
+- q6: Explain the difference between controller & an API.
+- q7: What is Inversion of Control (IoC)?
+- q8: What is Dependency Injection in C#?
+- q9: Why do we need Dependency Injection?
+- q10: How to create Dependency Injection in .NET Core?
+- q11: In how many ways can we achieve Dependency Injection in C#? (Constructor, Property, Method)
+- q12: Explain AddSingleton, AddScoped & AddTransient lifetimes with examples.
+- q13: How to handle errors globally in .NET Core? (Middleware, UseExceptionHandler)
+- q14: What is the use of Middleware in .NET Core?
+- q15: What is the difference between Middleware & Filters?
+- q16: What is Entity Framework (EF Core)?
+- q17: What is Rate Limiter?
+- q18: Explain async & await keywords in C#.
+- q19: What is the difference between List and IEnumerable?
+- q20: What is the difference between IEnumerable and IQueryable?
+- q21: What is serialization & why is it used in C#?
+- q22: What is the difference between throw & throw ex?
+- q23: What is an extension method in C#?
+- q24: What is Eager loading & Lazy Loading in Entity Framework?
+- q25: What are Action Filters? How many types of action filters are there in MVC?
+- q26: What is Kestrel web server?
+- q27: What is API Versioning?
+- q28: What is the difference between ref & out parameters?
+
+---
+
+## 2. Software Architecture Fundamentals Module
+URL: https://jenilvora0408.github.io/ace-interview/architecture-fundamentals
+
+Questions Covered:
+- q1: What is SDLC (Software Development Life Cycle) and what are its key phases?
+- q2: What are the SOLID Principles? (SRP, OCP, LSP, ISP, DIP with C# examples)
+- q3: What is the difference between HTTP and HTTPS? Why was HTTPS introduced and who introduced it?
+- q4: What is REST and RESTful API? Explain the key REST principles and constraints.
+- q5: What is Monolithic Architecture and Modular Monolithic Architecture?
+- q6: Monolith vs. Microservices Architecture: What are the key differences and when to use which?
+
+---
+
+## 3. SQL & Database Module
+URL: https://jenilvora0408.github.io/ace-interview/sql
+
+Questions Covered:
+- q1: What is a Database?
+- q2: What is DBMS (Database Management System)?
+- q3: What is RDBMS (Relational Database Management System)?
+- q4: What is SQL (Structured Query Language)?
+- q5: What is the difference between SQL and MySQL?
+- q6: What is a Table, Field, and Record in SQL?
+- q7: What is a Primary Key?
+- q8: What is a Unique Key?
+- q9: Difference between Primary Key and Unique Key.
+- q10: What is a Foreign Key?
+- q11: What is a Composite Key?
+- q12: What is a Null Value?
+- q13: What is a Clustered Index?
+- q14: What is a Non-Clustered Index?
+- q15: Difference between Clustered and Non-Clustered Index.
+- q16: What are ACID Properties in DBMS?
+- q17: What are Transaction Isolation Levels in SQL?
+- q18: What is the difference between WHERE and HAVING clause?
+- q19: What is the difference between TRUNCATE, DROP, and DELETE?
+- q20: What is a JOIN in SQL? (INNER, LEFT, RIGHT, FULL OUTER, CROSS, SELF)
+- q21: What is a Subquery?
+- q22: What is a CTE (Common Table Expression)?
+- q23: What is a Stored Procedure?
+- q24: Difference between Stored Procedure and Function.
+- q25: What is a Trigger in SQL?
+- q26: What is a View in SQL?
+- q27: How to optimize SQL queries for performance?
+
+---
+
+## 4. Object-Oriented Programming (OOP) Module
+URL: https://jenilvora0408.github.io/ace-interview/oops
+
+Questions Covered:
+- q1: What is the need for OOPs?
+- q2: What is a Class?
+- q3: What is an Object?
+- q4: What are the main features/pillars of OOP?
+- q5: What is Encapsulation?
+- q6: How can we implement Encapsulation?
+- q7: What is Polymorphism?
+- q8: Explain Compile Time Polymorphism.
+- q9: Explain Method Overloading with example.
+- q10: Explain Runtime Polymorphism.
+- q11: Explain Method Overriding with example.
+- q12: What is meant by Inheritance?
+- q13: Are there any limitations of Inheritance?
+- q14: How many types of Inheritance are there in C#?
+- q15: What do you mean by Abstraction?
+- q16: What is the difference between Abstract Class & Interface?
+
