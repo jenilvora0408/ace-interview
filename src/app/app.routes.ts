@@ -3,6 +3,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { OopsComponent } from './modules/oops/oops.component';
 import { DotnetCoreComponent } from './modules/dotnet-core/dotnet-core.component';
 import { SqlComponent } from './modules/sql/sql.component';
+import { ArchitectureFundamentalsComponent } from './modules/architecture-fundamentals/architecture-fundamentals.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'sql',
         component: SqlComponent
+    },
+    {
+        path: 'architecture-fundamentals',
+        component: ArchitectureFundamentalsComponent
     }
 ];

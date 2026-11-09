@@ -55,25 +55,27 @@ export class ModuleOptionsComponent {
       category: 'Frontend'
     },
     {
-      id: 'javascript',
-      name: 'JavaScript',
-      description: 'Event Loop, Closures, Prototypes, Promises & ES6+ modern features',
+      id: 'javascript-jquery',
+      name: 'JavaScript & jQuery',
+      description: 'Event Loop, Closures, Prototypes, Promises, DOM Selectors & AJAX',
       isReady: false,
       category: 'Frontend'
     },
     {
-      id: 'jquery',
-      name: 'jQuery',
-      description: 'DOM Selectors, Traversing, Event Handling & AJAX utilities',
-      isReady: false,
-      category: 'Frontend'
+      id: 'architecture-fundamentals',
+      name: 'Architecture and Fundamentals',
+      description: 'Design Patterns, SOLID Principles, System Architecture & Clean Code',
+      route: '/architecture-fundamentals',
+      questionCount: 6,
+      isReady: true,
+      category: 'Architecture'
     }
   ];
 
   toastMessage: string | null = null;
   private toastTimer: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   loadModule(item: ModuleItem): void {
     if (item.isReady && item.route) {

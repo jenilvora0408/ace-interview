@@ -1,0 +1,538 @@
+<!-- Mobile Sticky Question Navigator Bar -->
+<div class="mobile-question-bar d-lg-none">
+  <button 
+    type="button" 
+    class="btn-mobile-jump" 
+    (click)="toggleMobileNav()">
+    <span>📑 <strong>Questions ({{ questions.length }})</strong></span>
+    <span>{{ isMobileNavOpen ? '▲ Close' : '▼ Jump to' }}</span>
+  </button>
+  @if (isMobileNavOpen) {
+    <div class="mobile-nav-drawer">
+      <input 
+        type="text" 
+        class="form-control form-control-sm mb-2" 
+        placeholder="Filter questions..." 
+        [value]="searchQuery" 
+        (input)="onSearch($event)">
+      <ul class="nav flex-column gap-1">
+        @for (q of filteredQuestions; track q.id) {
+          <li>
+            <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</div>
+
+<div class="row g-0">
+  <!-- Desktop Question Navigation Section -->
+  <div class="question-nav col-lg-4 col-xl-3 p-3 d-none d-lg-block">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <span class="fw-bold text-secondary">Questions ({{ questions.length }})</span>
+    </div>
+    <input 
+      type="text" 
+      class="form-control form-control-sm mb-3" 
+      placeholder="Filter questions..." 
+      [value]="searchQuery" 
+      (input)="onSearch($event)">
+    <ul class="nav flex-column gap-1">
+      @for (q of filteredQuestions; track q.id) {
+        <li>
+          <a (click)="scrollToQuestion(q.id)">{{ q.title }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Content Section -->
+  <div #contentContainer class="col-12 col-lg-8 col-xl-9 content-scroll-container">
+    <div class="module-heading fs-4">Architecture and Fundamentals</div>
+    <div class="module-desc">
+      <p class="fs-5">
+        Core software engineering lifecycles, design principles, web communication protocols, and architectural patterns essential for scalable, maintainable applications.
+      </p>
+    </div>
+
+    <!-- Question 1: SDLC -->
+    <p #q1 class="module-question fs-4">
+      1. What is SDLC (Software Development Life Cycle) and what are its key phases?
+    </p>
+    <div>
+      <p class="fs-5">
+        The Software Development Life Cycle (SDLC) is a structured, step-by-step framework used by development teams to design, build, test, and maintain high-quality software efficiently.
+      </p>
+      <p class="fs-5">
+        It provides a roadmap for producing software that meets customer expectations within time and budget constraints.
+      </p>
+      <p class="fs-5 mb-2"><strong>Key Phases of SDLC:</strong></p>
+      <p class="fs-5 mb-2 text-muted">Although frameworks vary, the SDLC generally consists of these seven stages:</p>
+      <ol>
+        <li class="fs-5 mb-2"><strong>Planning:</strong> Defining the scope, goals, and resources for the project.</li>
+        <li class="fs-5 mb-2"><strong>Requirement Analysis:</strong> Gathering detailed functional and non-functional requirements from stakeholders.</li>
+        <li class="fs-5 mb-2"><strong>Design:</strong> Creating the software architecture, user interface (UI), and system interfaces.</li>
+        <li class="fs-5 mb-2"><strong>Development/Implementation:</strong> Coding or actual creation of the software based on design documents.</li>
+        <li class="fs-5 mb-2"><strong>Testing:</strong> Identifying bugs and verifying that the software meets requirements.</li>
+        <li class="fs-5 mb-2"><strong>Deployment:</strong> Releasing the final software to the production environment for user access.</li>
+        <li class="fs-5 mb-2"><strong>Maintenance:</strong> Ongoing support, updates, and bug fixes to ensure the system remains functional.</li>
+      </ol>
+    </div>
+
+    <!-- Question 2: SOLID Principles -->
+    <p #q2 class="module-question fs-4">
+      2. What are the SOLID Principles?
+    </p>
+    <div>
+      <p class="fs-5">
+        The SOLID principles are five design guidelines that help .NET developers create software that is easy to maintain, scale, and test.
+      </p>
+      
+      <p class="fs-5 mb-1"><strong>a) Single Responsibility Principle (SRP)</strong></p>
+      <ul>
+        <li class="fs-5"><strong>Principle:</strong> "A class should have only one reason to change."</li>
+        <li class="fs-5"><strong>Concept:</strong> Each class should focus on a single piece of functionality.</li>
+        <li class="fs-5"><strong>Example:</strong> In .NET: Instead of a single <code>UserService</code> that handles validation, database saving &amp; email notifications, you should split these into <code>UserValidator</code>, <code>UserRepository</code> &amp; <code>EmailService</code>.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>b) Open/Closed Principle (OCP)</strong></p>
+      <ul>
+        <li class="fs-5"><strong>Principle:</strong> "Software entities should be open for extension, but closed for modification."</li>
+        <li class="fs-5">You should be able to add new functionality without changing existing, tested code. In .NET, we achieve this using abstract classes or interfaces.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>c) Liskov Substitution Principle (LSP)</strong></p>
+      <ul>
+        <li class="fs-5"><strong>Principle:</strong> "Objects of a superclass should be replaceable with objects of its subclasses without breaking the application."</li>
+        <li class="fs-5">If Class B inherits from Class A, you should be able to pass B into any method that expects A without getting unexpected errors (like <code>NotImplementedException</code>).</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>d) Interface Segregation Principle (ISP)</strong></p>
+      <ul>
+        <li class="fs-5"><strong>Principle:</strong> "Clients should not be forced to depend on methods they do not use."</li>
+        <li class="fs-5"><strong>Violation:</strong> An <code>IMachine</code> interface with <code>Print()</code>, <code>Fax()</code>, and <code>Scan()</code>. A basic printer class is now forced to implement <code>Fax()</code> even if it can't do it.</li>
+        <li class="fs-5"><strong>Solution:</strong> Break it into <code>IPrinter</code>, <code>IFax</code>, and <code>IScanner</code>.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>e) Dependency Inversion Principle (DIP)</strong></p>
+      <ul>
+        <li class="fs-5"><strong>Principle:</strong> "High-level modules should not depend on low-level modules. Both should depend on abstractions."</li>
+        <li class="fs-5">This is the foundation of Dependency Injection (DI) in .NET Core. Instead of a class creating its own "helper" objects (using <code>new</code>), the helpers are "injected" via the constructor.</li>
+      </ul>
+
+      <div class="mb-3">
+        <app-code-block [code]="dipCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <!-- Question 3: HTTP vs HTTPS -->
+    <p #q3 class="module-question fs-4">
+      3. What is the difference between HTTP and HTTPS? Why was HTTPS introduced and who introduced it?
+    </p>
+    <div>
+      <p class="fs-5">
+        <strong>HTTP (HyperText Transfer Protocol)</strong> is the basic communication language of the web. When you type a URL into your browser, HTTP is the protocol that fetches HTML pages, images, and API data from the web server.
+      </p>
+
+      <p class="fs-5">
+        <strong>The Problem with Plain HTTP:</strong><br />
+        HTTP transmits all communication in <strong>plain text</strong>. Think of HTTP like sending a <strong>postcard</strong> through the mail—anyone handling it along the route (internet service providers, public Wi-Fi routers, or hackers using packet-sniffing tools) can read your passwords, credit cards, and private messages.
+      </p>
+
+      <p class="fs-5">
+        <strong>What is HTTPS?</strong><br />
+        <strong>HTTPS (HyperText Transfer Protocol Secure)</strong> is HTTP with a security guard. It is the exact same HTTP protocol, but wrapped inside an encryption layer called <strong>SSL/TLS</strong> (Secure Sockets Layer / Transport Layer Security).
+      </p>
+      <p class="fs-5">
+        Think of HTTPS like putting that message inside a <strong>locked, tamper-proof steel box</strong>. Only the sender (your browser) and the intended recipient (the server) have the secret keys to lock and unlock it. If anyone intercepts the data in between, all they see is random unreadable gibberish.
+      </p>
+
+      <p class="fs-5 mb-1 mt-3"><strong>Who Introduced HTTPS and When?</strong></p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>Netscape Communications</strong> introduced HTTPS in <strong>1994</strong> for their flagship Netscape Navigator web browser.
+        </li>
+        <li class="fs-5 mb-2">
+          They developed the <strong>SSL (Secure Sockets Layer)</strong> protocol to protect sensitive data for the very first wave of e-commerce and online payments on the internet.
+        </li>
+        <li class="fs-5 mb-2">
+          Over time, SSL was updated and succeeded by modern, stronger encryption standards known as <strong>TLS (Transport Layer Security)</strong>, though people still casually refer to them as "SSL certificates".
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-3"><strong>Why was HTTPS Introduced? (The 3 Pillars of HTTPS)</strong></p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>1. Encryption (Privacy &amp; Secrecy):</strong><br />
+          Guarantees that no eavesdropper or hacker on the network (especially on public Wi-Fi at airports or cafes) can read sensitive data like credit card numbers, passwords, or personal chats.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>2. Data Integrity (No Tampering):</strong><br />
+          Ensures the data cannot be modified, corrupted, or injected with malicious scripts or fake ads while in transit between the server and the browser.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>3. Authentication (Identity Verification):</strong><br />
+          Uses a digital <strong>SSL/TLS Certificate</strong> signed by a trusted Certificate Authority (CA) to prove you are actually communicating with the legitimate website (e.g. your real bank) and not a fake phishing imposter website.
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-2 mt-3"><strong>Key Differences: HTTP vs. HTTPS</strong></p>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="fs-5">Feature</th>
+              <th class="fs-5">HTTP</th>
+              <th class="fs-5">HTTPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fs-5"><strong>Full Form</strong></td>
+              <td class="fs-5">HyperText Transfer Protocol</td>
+              <td class="fs-5">HyperText Transfer Protocol Secure</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Security</strong></td>
+              <td class="fs-5">Insecure (plain text data)</td>
+              <td class="fs-5">Secure (end-to-end encrypted)</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Default Port</strong></td>
+              <td class="fs-5">Port <code>80</code></td>
+              <td class="fs-5">Port <code>443</code></td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Encryption Mechanism</strong></td>
+              <td class="fs-5">None</td>
+              <td class="fs-5">SSL / TLS</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Certificate Required</strong></td>
+              <td class="fs-5">No certificate needed</td>
+              <td class="fs-5">Requires an SSL/TLS Certificate</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Browser Indicator</strong></td>
+              <td class="fs-5">Flagged as <em>"Not Secure"</em></td>
+              <td class="fs-5">Displays padlock icon 🔒 in address bar</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>SEO &amp; Ranking</strong></td>
+              <td class="fs-5">No search ranking advantage</td>
+              <td class="fs-5">Preferred &amp; boosted by Google search algorithms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Question 4: REST Principles & RESTful API -->
+    <p #q4 class="module-question fs-4">
+      4. What is REST and RESTful API? Explain the key REST principles.
+    </p>
+    <div>
+      <p class="fs-5">
+        <strong>REST</strong> stands for <strong>Representational State Transfer</strong>. It is not a protocol, language, or library; it is an <strong>architectural style</strong> (a set of guidelines and design rules) for building web services that communicate over HTTP.
+      </p>
+
+      <p class="fs-5">
+        <strong>What is a RESTful API?</strong><br />
+        A RESTful API is an API that adheres to these REST guidelines. In simple terms:
+      </p>
+      <ul>
+        <li class="fs-5 mb-2">
+          Everything is treated as a <strong>Resource</strong> (e.g., User, Product, Order).
+        </li>
+        <li class="fs-5 mb-2">
+          Each resource is identified by a unique, clean <strong>URI / URL</strong> using nouns (e.g., <code>/api/users</code> or <code>/api/orders/101</code> instead of <code>/api/getOrders</code>).
+        </li>
+        <li class="fs-5 mb-2">
+          Data is exchanged using standard lightweight formats like <strong>JSON</strong>.
+        </li>
+        <li class="fs-5 mb-2">
+          Standard <strong>HTTP Verbs</strong> are used to perform CRUD operations on the resources:
+          <ul>
+            <li class="fs-5"><code>GET</code> - Retrieve/read data (e.g., <code>GET /api/users/5</code>)</li>
+            <li class="fs-5"><code>POST</code> - Create a new resource (e.g., <code>POST /api/users</code>)</li>
+            <li class="fs-5"><code>PUT</code> - Replace / update an existing resource completely (e.g., <code>PUT /api/users/5</code>)</li>
+            <li class="fs-5"><code>PATCH</code> - Partially update specific fields of a resource (e.g., <code>PATCH /api/users/5</code>)</li>
+            <li class="fs-5"><code>DELETE</code> - Remove a resource (e.g., <code>DELETE /api/users/5</code>)</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-3"><strong>Key REST Principles (Constraints):</strong></p>
+      <p class="fs-5 text-muted mb-2">An API is strictly RESTful if it follows these 6 core principles:</p>
+      
+      <p class="fs-5 mb-1"><strong>1. Client-Server Architecture</strong></p>
+      <ul>
+        <li class="fs-5">The frontend (Client) and backend (Server) are completely separated.</li>
+        <li class="fs-5">The client handles UI and user experience, while the server handles business logic and data storage. Both can evolve independently without breaking each other as long as the API contract stays intact.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>2. Statelessness (Crucial)</strong></p>
+      <ul>
+        <li class="fs-5">The server does <em>not</em> store any client session state between requests.</li>
+        <li class="fs-5">Each request from client to server must contain all necessary data to process it (e.g., authentication token in headers, payload in body). Every request stands on its own.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>3. Cacheability</strong></p>
+      <ul>
+        <li class="fs-5">Responses must explicitly state whether they can be cached or not (using HTTP headers like <code>Cache-Control</code>).</li>
+        <li class="fs-5">Caching eliminates unnecessary calls to the server for identical data, drastically improving speed and scalability.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>4. Uniform Interface</strong></p>
+      <ul>
+        <li class="fs-5">Provides a consistent and predictable way to interact with resources across any client (web, mobile, third-party):</li>
+        <li class="fs-5">Resources are named with clear nouns (e.g., <code>/api/customers</code>).</li>
+        <li class="fs-5">Standard HTTP status codes are used to communicate success or error (e.g., <code>200 OK</code>, <code>201 Created</code>, <code>404 Not Found</code>).</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>5. Layered System</strong></p>
+      <ul>
+        <li class="fs-5">The client does not need to know whether it is connected directly to the origin server or through intermediate layers like an API Gateway, Load Balancer, or Reverse Proxy.</li>
+        <li class="fs-5">This allows adding security and caching layers without impacting client applications.</li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>6. Code on Demand (Optional)</strong></p>
+      <ul>
+        <li class="fs-5">Servers can optionally extend client capabilities by sending executable code (such as JavaScript). This is optional and rarely used in pure REST APIs.</li>
+      </ul>
+
+      <p class="fs-5 mb-2 mt-3"><strong>Quick Reference: Standard HTTP Status Codes in REST</strong></p>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="fs-5">Status Code</th>
+              <th class="fs-5">Meaning</th>
+              <th class="fs-5">When to use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fs-5"><code>200 OK</code></td>
+              <td class="fs-5">Success</td>
+              <td class="fs-5">Standard success response for <code>GET</code>, <code>PUT</code>, or <code>PATCH</code>.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>201 Created</code></td>
+              <td class="fs-5">Created</td>
+              <td class="fs-5">Resource successfully created via <code>POST</code>.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>204 No Content</code></td>
+              <td class="fs-5">No Content</td>
+              <td class="fs-5">Action succeeded, but there is no response body to return (common with <code>DELETE</code>).</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>400 Bad Request</code></td>
+              <td class="fs-5">Bad Request</td>
+              <td class="fs-5">Invalid input data, bad format, or model validation failed.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>401 Unauthorized</code></td>
+              <td class="fs-5">Unauthenticated</td>
+              <td class="fs-5">User is not logged in or missing a valid authentication token.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>403 Forbidden</code></td>
+              <td class="fs-5">Forbidden</td>
+              <td class="fs-5">User is authenticated, but does not have permission/role to access this resource.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>404 Not Found</code></td>
+              <td class="fs-5">Not Found</td>
+              <td class="fs-5">The requested resource URI does not exist.</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><code>500 Server Error</code></td>
+              <td class="fs-5">Internal Error</td>
+              <td class="fs-5">An unhandled server exception or error occurred.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Question 5: Monolithic and Modular Monolithic Architecture -->
+    <p #q5 class="module-question fs-4">
+      5. What is Monolithic Architecture and Modular Monolithic Architecture?
+    </p>
+    <div>
+      <p class="fs-5">
+        <strong>Monolithic Architecture</strong> is a software design pattern where the entire application is built as a single, cohesive unit.
+      </p>
+      <p class="fs-5">
+        The entire application resides in one solution (e.g., a single Visual Studio Solution), often organized into folders like <code>/Controllers</code>, <code>/Models</code>, and <code>/Services</code> for separation of concerns.
+      </p>
+
+      <p class="fs-5 mb-1"><strong>Drawbacks:</strong></p>
+      <p class="fs-5 mb-1 text-muted">In a monolith, all components share the same memory space and resources.</p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>a) Resource Exhaustion:</strong> If "View A" has a bug that causes an infinite loop or leaks memory, it consumes the CPU/RAM of the entire process. Because "View B" is running in that same process, it will slow down or crash as well.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>b) Shared Dependencies:</strong> If "View A" and "View B" both use the same DbContext or a shared Service, and "View A" causes a database deadlock or crashes the Service, "View B" will fail immediately because it relies on that same shared "brain."
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1"><strong>Advantages:</strong></p>
+      <ul>
+        <li class="fs-5 mb-1"><strong>a) Simplicity:</strong> Easier to develop, test, and debug initially as all code is in one place.</li>
+        <li class="fs-5 mb-1"><strong>b) Simplified Deployment:</strong> Only one unit needs to be deployed to a server.</li>
+      </ul>
+
+      <hr class="my-4" />
+
+      <p class="fs-5">
+        <strong>What is Modular Monolithic architecture?</strong>
+      </p>
+      <p class="fs-5">
+        In a Modular Monolith, you still use Controllers, Services, and Repositories, but you wrap them inside strictly isolated modules based on the business domain (e.g., a "MatchModule" and an "EmployeeModule").
+      </p>
+
+      <p class="fs-5 mb-1"><strong>Key Differences:</strong></p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>a) Strict Boundaries:</strong> The MatchModule has its own Services and Repositories. The EmployeeModule cannot see them.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>b) Communication:</strong> If the MatchModule needs data from an Employee, it cannot call the EmployeeRepository. It must call a public Interface/API exposed by the EmployeeModule.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>c) Database Separation (Logical):</strong> Even if they share one SQL Server, you might use different Schemas (e.g., match.Matches vs hr.Employees) to ensure one module doesn't "reach into" the other's tables.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>d) Migration Path:</strong> If "Match" module ever grows too big, you can simply right-click that folder, move it to a new project, and turn it into a Microservice in a single afternoon.
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-3"><strong>Advantages of Modular Monolith:</strong></p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>a) Clear Separation &amp; Maintainability:</strong> Enforces domain boundaries and prevents tightly-coupled "spaghetti code", making modules easier to understand, test, and maintain.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>b) Low Operational Overhead:</strong> Delivers clean microservice-like boundaries without the complexity of network latency, distributed transactions, or managing multiple CI/CD pipelines.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>c) Smooth Migration to Microservices:</strong> Modules can be extracted into standalone microservices easily when scaling or team size demands it, without major codebase rewrites.
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-3"><strong>Drawbacks of Modular Monolith:</strong></p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>a) Shared Runtime &amp; Failure Domain:</strong> All modules still share the same memory space and process; a fatal exception, high CPU spike, or memory leak in one module can impact the entire system.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>b) Coupled Deployment:</strong> Any update or bug fix in a single module requires redeploying the entire monolithic application.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>c) Requires Architectural Discipline:</strong> Boundaries must be strictly maintained through conventions or architecture tests; without them, developers might be tempted to bypass boundaries over time.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Question 6: Monolith vs Microservices -->
+    <p #q6 class="module-question fs-4">
+      6. Monolith vs. Microservices Architecture: What are the key differences and when to use which?
+    </p>
+    <div>
+      <p class="fs-5">
+        <strong>The Simple Analogy:</strong>
+      </p>
+      <ul>
+        <li class="fs-5 mb-2">
+          <strong>Monolith is like a Swiss Army Knife:</strong> Everything (knife, corkscrew, scissors, screwdriver) is housed inside one single pocket tool. It is convenient, easy to carry, and cheap to buy. But if the main spring snaps or the blade gets jammed, the entire tool is affected, and you can't easily replace just the scissors without disassembling the whole knife.
+        </li>
+        <li class="fs-5 mb-2">
+          <strong>Microservices is like a Professional Toolbox:</strong> You have an independent hammer, an independent screwdriver, and independent pliers. If the screwdriver wears out, your hammer still functions perfectly. You can upgrade, fix, or replace the screwdriver anytime without touching the other tools.
+        </li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-3"><strong>What is Microservices Architecture?</strong></p>
+      <p class="fs-5">
+        Instead of building a single huge project, the application is divided into small, autonomous, specialized services (e.g., <code>Auth Service</code>, <code>Product Catalog Service</code>, <code>Cart Service</code>, <code>Payment Service</code>, <code>Notification Service</code>).
+      </p>
+      <ul>
+        <li class="fs-5 mb-2">Each microservice has its <strong>own codebase</strong> and its <strong>own private database</strong>.</li>
+        <li class="fs-5 mb-2">Each service can be written in a different programming language or framework if desired (e.g., Python for AI, .NET for high-throughput APIs).</li>
+        <li class="fs-5 mb-2">Services communicate with each other over the network via <strong>HTTP/REST</strong>, <strong>gRPC</strong>, or asynchronous <strong>Message Brokers</strong> (like RabbitMQ or Apache Kafka).</li>
+      </ul>
+
+      <p class="fs-5 mb-2 mt-3"><strong>Key Differences: Monolith vs. Microservices</strong></p>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="fs-5">Feature</th>
+              <th class="fs-5">Monolithic Architecture</th>
+              <th class="fs-5">Microservices Architecture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fs-5"><strong>Codebase &amp; Structure</strong></td>
+              <td class="fs-5">Single shared repository &amp; solution</td>
+              <td class="fs-5">Multiple independent repositories/projects per service</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Database</strong></td>
+              <td class="fs-5">Single shared database across all modules</td>
+              <td class="fs-5">Database-per-service pattern (independent databases)</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Deployment</strong></td>
+              <td class="fs-5">All-or-nothing (must rebuild &amp; redeploy the entire app even for a small fix)</td>
+              <td class="fs-5">Independent deployments (deploy 1 service anytime without touching the others)</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Scalability</strong></td>
+              <td class="fs-5">Must scale the entire app together (expensive and resource-inefficient)</td>
+              <td class="fs-5">Scale only the busy service (e.g., scale Payment service 10x during flash sales)</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Failure Isolation</strong></td>
+              <td class="fs-5">Low: A bug or memory leak in one area can crash the entire system</td>
+              <td class="fs-5">High: If Notification service crashes, users can still browse and purchase items</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Operational Complexity</strong></td>
+              <td class="fs-5">Low: Simple to run locally, debug, and monitor</td>
+              <td class="fs-5">High: Requires API Gateways, service discovery, distributed tracing, and orchestration (Docker / Kubernetes)</td>
+            </tr>
+            <tr>
+              <td class="fs-5"><strong>Team Autonomy</strong></td>
+              <td class="fs-5">Teams share one repository, increasing merge conflicts and coordination overhead</td>
+              <td class="fs-5">Autonomous cross-functional teams build and ship their own microservice independently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="fs-5 mb-1 mt-3"><strong>When Should You Choose Which? (The Golden Rule)</strong></p>
+      
+      <p class="fs-5 mb-1"><strong>Choose a Monolith when:</strong></p>
+      <ul>
+        <li class="fs-5 mb-1">You are building a new startup, MVP (Minimum Viable Product), or proof-of-concept.</li>
+        <li class="fs-5 mb-1">You have a small team (fewer than 10-15 developers).</li>
+        <li class="fs-5 mb-1">The business domain is still evolving rapidly and you want fast iterations without distributed systems overhead.</li>
+        <li class="fs-5 mb-1">You want straightforward local development, testing, and debugging.</li>
+      </ul>
+
+      <p class="fs-5 mb-1 mt-2"><strong>Choose Microservices when:</strong></p>
+      <ul>
+        <li class="fs-5 mb-1">The application is very large, complex, and has clear business boundaries.</li>
+        <li class="fs-5 mb-1">You have multiple dedicated engineering teams that need to deploy independently without blocking one another.</li>
+        <li class="fs-5 mb-1">Certain services have distinct resource requirements (e.g., intensive image processing vs. a simple user profile read).</li>
+        <li class="fs-5 mb-1">Your company has mature DevOps, CI/CD, and container orchestration (Kubernetes) capabilities to handle the operational overhead.</li>
+      </ul>
+    </div>
+  </div>
+</div>
