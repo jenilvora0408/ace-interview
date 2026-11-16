@@ -56,43 +56,78 @@
     </p>
 
     <p #q1 class="module-question fs-4">1. What is the need for OOPs?</p>
-    <ul>
-      <li class="fs-5">
-        OOPs helps users to understand the software easily, although they don’t
-        know the actual implementation.
-      </li>
-      <li class="fs-5">
-        With OOPs, the readability, understandability, and maintainability of
-        the code increase multifold.
-      </li>
-      <li class="fs-5">
-        Even very big software can be easily written and managed easily using
-        OOPs.
-      </li>
-    </ul>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        Think about how the real world works — everything around us is an
+        <strong>object</strong> with its own properties and behaviors. OOPs
+        brings that same thinking into code.
+      </p>
+      <p class="fs-5 mb-2">
+        Before OOPs, programs were just long lists of instructions. As software
+        grew bigger, it became a nightmare — touch one thing and something else
+        would break. OOPs was designed to fix exactly that.
+      </p>
+      <p class="fs-5 mb-0">OOPs solves this by letting you:</p>
+      <ul>
+        <li class="fs-5">
+          <strong>Organise code around real-world things</strong> — a
+          <code>BankAccount</code>, a <code>User</code>, a <code>Car</code> — so
+          anyone reading it instantly gets what it does.
+        </li>
+        <li class="fs-5">
+          <strong>Reuse code instead of repeating it</strong> — write something
+          once in a class and use it everywhere.
+        </li>
+        <li class="fs-5">
+          <strong>Keep large codebases manageable</strong> — each class has one
+          clear job, so even huge applications stay under control.
+        </li>
+      </ul>
+    </div>
 
     <p #q2 class="module-question fs-4">2. What is a Class?</p>
     <div class="mb-3">
-      <span class="fs-5">A Class can be understood as a template or a blueprint, which contains
-        some values, known as member data or member & some set of rules, known
-        as behaviours or functions.</span><br />
-      <span class="fs-5">So, When an object is created, it automatically takes the data &
-        functions that are defined in the Class.</span><br />
-      <span class="fs-5">One can create as many objects as they want based on a Class.</span><br />
-      <span class="fs-5">Eg. First a Car's template is created. Then multiple units of Car are
-        created based on that template.</span>
+      <p class="fs-5 mb-2">
+        A <strong>Class</strong> is a <strong>blueprint</strong>. It defines
+        what an object should look like — its data (properties) and what it can
+        do (methods). The class itself is not the actual thing; it just describes
+        how the thing should be built.
+      </p>
+      <p class="fs-5 mb-2">
+        Think of it like a <strong>cookie cutter</strong>. The cutter gives every
+        cookie its shape, but the cutter itself is not a cookie. From one cutter
+        you can stamp out as many cookies (objects) as you like.
+      </p>
+      <p class="fs-5 mb-0">For example, a <code>Car</code> class might define:</p>
+      <ul>
+        <li class="fs-5"><strong>Properties:</strong> color, brand, speed</li>
+        <li class="fs-5"><strong>Methods:</strong> Start(), Stop(), Accelerate()</li>
+      </ul>
+      <p class="fs-5">
+        From that one blueprint, you can create a red Toyota, a blue BMW, or any
+        number of other cars — each is its own independent object.
+      </p>
     </div>
 
     <p #q3 class="module-question fs-4">3. What is an Object?</p>
     <div class="mb-3">
-      <span class="fs-5">An Object refers to the instance of the Class, which contains the
-        instance of the members & behaviors defined in the Class template.</span><br />
-      <span class="fs-5">In the real world, an Object is an actual entity to which a user
-        interacts, whereas class is just the blueprint for that object.</span><br />
-      <span class="fs-5">So, the Objects consume space & have some characteristic
-        behaviour.</span>
+      <p class="fs-5 mb-2">
+        An <strong>Object</strong> is the actual <em>thing</em> created from a
+        class — the real cookie cut from the cutter. While a class is just a
+        definition sitting in code, an object is a live instance that takes up
+        memory and can actually <em>do</em> things.
+      </p>
+      <p class="fs-5 mb-2">
+        Each object gets its own copy of the class&apos;s data, so they stay
+        independent. Changing the color of one <code>Car</code> object
+        won&apos;t affect any other car.
+      </p>
+      <p class="fs-5 mb-0">In short:</p>
+      <ul>
+        <li class="fs-5"><strong>Class</strong> = the blueprint (no memory used)</li>
+        <li class="fs-5"><strong>Object</strong> = the actual thing in memory, ready to use</li>
+      </ul>
     </div>
-
     <p #q4 class="module-question fs-4">
       4. What are the main features/pillars of OOPS?
     </p>
@@ -315,6 +350,361 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- SECTION: Constructors -->
+    <p class="module-heading fs-4 mt-4">Constructors</p>
+
+    <p #q17 class="module-question fs-4">17. What is a Constructor?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A <strong>constructor</strong> is a special method that runs automatically
+        the moment you create an object. You never have to call it manually — C#
+        calls it for you as soon as you write <code>new SomeClass()</code>.
+      </p>
+      <p class="fs-5 mb-2">
+        Think of it as the <strong>setup crew</strong> that gets everything ready
+        before the object is handed over for use. It makes sure no field is left
+        uninitialized.
+      </p>
+      <p class="fs-5 mb-0">A few things that make it unique:</p>
+      <ul>
+        <li class="fs-5">Its name must <strong>exactly match</strong> the class name.</li>
+        <li class="fs-5">It has <strong>no return type</strong> — not even <code>void</code>.</li>
+        <li class="fs-5">It is called automatically when an object is created.</li>
+      </ul>
+    </div>
+
+    <p #q18 class="module-question fs-4">18. What are the types of Constructors in C#?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">C# has 5 types of constructors:</p>
+      <ul>
+        <li class="fs-5">
+          <strong>Default Constructor</strong> — no parameters; sets up default values.
+        </li>
+        <li class="fs-5">
+          <strong>Parameterized Constructor</strong> — accepts values so you can
+          initialize the object with specific data right away.
+        </li>
+        <li class="fs-5">
+          <strong>Copy Constructor</strong> — creates a new object as a copy of an
+          existing one.
+        </li>
+        <li class="fs-5">
+          <strong>Static Constructor</strong> — runs only once, before anything else
+          in the class. Used to initialize static fields.
+        </li>
+        <li class="fs-5">
+          <strong>Private Constructor</strong> — prevents anyone outside the class
+          from creating an object directly. Classic use case: the Singleton pattern.
+        </li>
+      </ul>
+    </div>
+
+    <p #q19 class="module-question fs-4">19. What is a Default Constructor?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A default constructor is one that takes <strong>no parameters</strong>. It
+        gives every field a safe starting value so the object is never in a broken
+        state.
+      </p>
+      <p class="fs-5 mb-2">
+        If you don&apos;t write any constructor at all, C# quietly creates a
+        default one for you behind the scenes. But the moment you write any other
+        constructor yourself, C# stops generating the default one — you have to
+        write it explicitly if you still want it.
+      </p>
+      <div class="w-75">
+        <app-code-block [code]="defaultConstructorCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q20 class="module-question fs-4">20. What is a Parameterized Constructor?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A parameterized constructor lets you pass values <strong>at the time of
+        creating an object</strong>, so you don&apos;t have to set properties
+        separately after creation. It&apos;s the difference between handing someone
+        a fully filled form vs. a blank one.
+      </p>
+      <div class="w-75">
+        <app-code-block [code]="parameterizedConstructorCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q21 class="module-question fs-4">21. What is a Static Constructor?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A static constructor runs <strong>exactly once</strong> — the very first
+        time the class is touched (either an object is created or a static member
+        is accessed). After that it never runs again.
+      </p>
+      <p class="fs-5 mb-0">Key rules to remember:</p>
+      <ul>
+        <li class="fs-5">You <strong>cannot</strong> pass parameters to it or call it manually.</li>
+        <li class="fs-5">It is always <strong>parameterless</strong> and has no access modifier.</li>
+        <li class="fs-5">A class can only have <strong>one</strong> static constructor.</li>
+      </ul>
+      <div class="w-75">
+        <app-code-block [code]="staticConstructorCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q22 class="module-question fs-4">22. Can a Constructor be Private? When is it used?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        Yes, a constructor can be <strong>private</strong>. When it is, nobody
+        outside the class can write <code>new YourClass()</code> — only the class
+        itself controls object creation.
+      </p>
+      <p class="fs-5 mb-2">
+        The most common use case is the <strong>Singleton pattern</strong> — where
+        you want to guarantee that only <em>one single instance</em> of a class
+        ever exists throughout the application. You expose a static method like
+        <code>GetInstance()</code> that creates the object the first time and
+        returns the same one every time after.
+      </p>
+      <div class="w-75">
+        <app-code-block [code]="privateConstructorCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q23 class="module-question fs-4">23. What is Constructor Chaining?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        Constructor chaining is when one constructor calls another constructor
+        instead of repeating the same setup code.
+      </p>
+      <ul>
+        <li class="fs-5">
+          Use <code>this(...)</code> to call another constructor <strong>in the same class</strong>.
+        </li>
+        <li class="fs-5">
+          Use <code>base(...)</code> to call a constructor <strong>in the parent class</strong>.
+        </li>
+      </ul>
+      <p class="fs-5 mb-2">
+        It keeps things DRY — the actual initialization logic lives in one place
+        and all other constructors just delegate to it.
+      </p>
+      <div class="w-75">
+        <app-code-block [code]="constructorChainingCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <!-- SECTION: Classes & Objects (Tricky) -->
+    <p class="module-heading fs-4 mt-4">Classes &amp; Objects — Tricky Ones</p>
+
+    <p #q24 class="module-question fs-4">24. What is a Sealed Class?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A <strong>sealed class</strong> is one that <strong>cannot be inherited</strong>.
+        You put the <code>sealed</code> keyword on it, and that&apos;s it — no
+        other class can extend it.
+      </p>
+      <p class="fs-5 mb-2">
+        A real-world example: <code>string</code> in C# is a sealed class. Microsoft
+        sealed it so no one can mess with its behavior by inheriting and overriding
+        its methods.
+      </p>
+      <p class="fs-5 mb-0">Use sealed when:</p>
+      <ul>
+        <li class="fs-5">You want to <strong>prevent misuse</strong> of a class through inheritance.</li>
+        <li class="fs-5">You want a small <strong>performance boost</strong> (the compiler can optimize sealed class calls).</li>
+      </ul>
+      <div class="w-75">
+        <app-code-block [code]="sealedClassCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q25 class="module-question fs-4">25. What is a Static Class?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A <strong>static class</strong> is one you can <strong>never create an object
+        of</strong>. All its members must be static too. You just call its methods
+        directly on the class name.
+      </p>
+      <p class="fs-5 mb-2">
+        Think of <code>Math</code> or <code>Console</code> in C# — you never write
+        <code>new Math()</code>; you just go <code>Math.Abs(-5)</code>. That&apos;s
+        a static class in action.
+      </p>
+      <p class="fs-5 mb-0">Key differences from a regular class:</p>
+      <ul>
+        <li class="fs-5">Cannot be instantiated (<code>new StaticClass()</code> won&apos;t compile).</li>
+        <li class="fs-5">Cannot be inherited.</li>
+        <li class="fs-5">All members must be <code>static</code>.</li>
+      </ul>
+      <div class="w-75">
+        <app-code-block [code]="staticClassCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q26 class="module-question fs-4">26. What is a Partial Class?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        A <strong>partial class</strong> lets you split one class definition across
+        <strong>multiple files</strong>. C# merges them all at compile time into a
+        single class — it&apos;s like writing a book where different people write
+        different chapters, but the final print is one complete book.
+      </p>
+      <p class="fs-5 mb-2">
+        This is super common with <strong>auto-generated code</strong> (like
+        Entity Framework or WinForms). The tool generates one part of the class,
+        you write your custom logic in another file — and neither interferes with
+        the other.
+      </p>
+      <div class="w-75">
+        <app-code-block [code]="partialClassCode" language="c#"></app-code-block>
+      </div>
+    </div>
+
+    <p #q27 class="module-question fs-4">27. What is the difference between a Class and a Struct?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        The biggest practical difference: a <strong>class is a reference type</strong>
+        and a <strong>struct is a value type</strong>.
+      </p>
+      <p class="fs-5 mb-2">
+        When you copy a class variable, both variables point to the <em>same object
+        in memory</em> — change one and the other is affected too. When you copy a
+        struct, you get a <em>completely separate copy</em> — they&apos;re independent.
+      </p>
+      <div class="w-75 mb-3">
+        <app-code-block [code]="structVsClassCode" language="c#"></app-code-block>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="fs-5" scope="col">Class</th>
+            <th class="fs-5" scope="col">Struct</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fs-5">Reference type (stored on the Heap)</td>
+            <td class="fs-5">Value type (stored on the Stack)</td>
+          </tr>
+          <tr>
+            <td class="fs-5">Assignment copies the reference</td>
+            <td class="fs-5">Assignment copies the entire value</td>
+          </tr>
+          <tr>
+            <td class="fs-5">Supports inheritance</td>
+            <td class="fs-5">No inheritance (can implement interfaces)</td>
+          </tr>
+          <tr>
+            <td class="fs-5">Can be null</td>
+            <td class="fs-5">Cannot be null (unless <code>Nullable&lt;T&gt;</code>)</td>
+          </tr>
+          <tr>
+            <td class="fs-5">Use for complex objects with behavior</td>
+            <td class="fs-5">Use for small, simple data (e.g. <code>Point</code>, <code>Color</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: Access Modifiers -->
+    <p class="module-heading fs-4 mt-4">Access Modifiers</p>
+
+    <p #q28 class="module-question fs-4">28. What are Access Modifiers in C#?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        Access modifiers are keywords that control <strong>who can see and use</strong>
+        a class, method, or property. Think of them as the <strong>privacy settings
+        </strong> of your code — just like how you control who can see your posts
+        on social media.
+      </p>
+      <p class="fs-5">
+        C# has 5 access modifiers: <code>public</code>, <code>private</code>,
+        <code>protected</code>, <code>internal</code>, and
+        <code>protected internal</code>.
+      </p>
+    </div>
+
+    <p #q29 class="module-question fs-4">29. Explain all Access Modifiers with their scope.</p>
+    <div class="mb-3">
+      <div class="w-75 mb-3">
+        <app-code-block [code]="accessModifiersCode" language="c#"></app-code-block>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="fs-5" scope="col">Modifier</th>
+            <th class="fs-5" scope="col">Who can access it?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fs-5"><code>public</code></td>
+            <td class="fs-5">Anyone, from anywhere.</td>
+          </tr>
+          <tr>
+            <td class="fs-5"><code>private</code></td>
+            <td class="fs-5">Only within the same class. Nothing outside can touch it.</td>
+          </tr>
+          <tr>
+            <td class="fs-5"><code>protected</code></td>
+            <td class="fs-5">The class itself + any class that inherits from it.</td>
+          </tr>
+          <tr>
+            <td class="fs-5"><code>internal</code></td>
+            <td class="fs-5">Anywhere within the same project (assembly). Not accessible from other projects.</td>
+          </tr>
+          <tr>
+            <td class="fs-5"><code>protected internal</code></td>
+            <td class="fs-5">The class, its derived classes, <em>and</em> anything in the same project.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p #q30 class="module-question fs-4">30. What is the default Access Modifier for a class and its members?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        This is a classic trick question. The defaults are <strong>not the same</strong>
+        for a class and its members:
+      </p>
+      <ul>
+        <li class="fs-5">
+          <strong>Class</strong> (top-level) → defaults to <code>internal</code>
+          — it&apos;s accessible anywhere within the same project, but not from
+          outside.
+        </li>
+        <li class="fs-5">
+          <strong>Class members</strong> (fields, methods, properties) → default to
+          <code>private</code> — nothing outside the class can access them unless
+          you explicitly say so.
+        </li>
+      </ul>
+      <p class="fs-5">
+        The rule of thumb: C# always defaults to the <strong>most restrictive</strong>
+        access level that makes sense for that level.
+      </p>
+    </div>
+
+    <p #q31 class="module-question fs-4">31. Can get and set have different access modifiers on a property?</p>
+    <div class="mb-3">
+      <p class="fs-5 mb-2">
+        Yes! This is a very common and clean pattern in C#. You can make the
+        <code>get</code> <strong>public</strong> (so anyone can read it) but the
+        <code>set</code> <strong>private</strong> (so only the class itself can
+        change it).
+      </p>
+      <p class="fs-5 mb-2">
+        It&apos;s a great way to enforce encapsulation — the outside world can
+        see the value, but only your class gets to change it.
+      </p>
+      <p class="fs-5 mb-1">Example:</p>
+      <ul>
+        <li class="fs-5"><code>public decimal Balance &#123; get; private set; &#125;</code></li>
+      </ul>
+      <p class="fs-5 mb-0">The rule: the accessor modifier must be <strong>more restrictive</strong> than the property itself.</p>
+      <ul>
+        <li class="fs-5">If property is <code>public</code>, the accessor can be <code>private</code>, <code>protected</code>, or <code>internal</code>.</li>
+        <li class="fs-5">You cannot make the accessor <em>less</em> restrictive than the property modifier.</li>
+      </ul>
     </div>
   </div>
 </div>

@@ -22,10 +22,10 @@ export class ModuleOptionsComponent {
   modules: Array<ModuleItem> = [
     {
       id: 'dotnet-core',
-      name: '.NET Core',
-      description: 'Architecture, DI, Middlewares, EF Core, Asynchronous Programming & APIs',
+      name: 'ASP.NET (Core + MVC)',
+      description: 'Architecture, MVC, DI, Middlewares, EF Core, Asynchronous Programming & APIs',
       route: '/dotnet-core',
-      questionCount: 28,
+      questionCount: 38,
       isReady: true,
       category: 'Backend'
     },
@@ -34,7 +34,7 @@ export class ModuleOptionsComponent {
       name: 'OOPS Concepts',
       description: 'Encapsulation, Polymorphism, Inheritance, Abstraction & C# implementations',
       route: '/oops',
-      questionCount: 16,
+      questionCount: 31,
       isReady: true,
       category: 'Core'
     },

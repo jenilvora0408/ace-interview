@@ -40,6 +40,16 @@ export class DotnetCoreComponent implements OnInit {
   @ViewChild('q26') q26!: ElementRef;
   @ViewChild('q27') q27!: ElementRef;
   @ViewChild('q28') q28!: ElementRef;
+  @ViewChild('q29') q29!: ElementRef;
+  @ViewChild('q30') q30!: ElementRef;
+  @ViewChild('q31') q31!: ElementRef;
+  @ViewChild('q32') q32!: ElementRef;
+  @ViewChild('q33') q33!: ElementRef;
+  @ViewChild('q34') q34!: ElementRef;
+  @ViewChild('q35') q35!: ElementRef;
+  @ViewChild('q36') q36!: ElementRef;
+  @ViewChild('q37') q37!: ElementRef;
+  @ViewChild('q38') q38!: ElementRef;
 
   isMobileNavOpen: boolean = false;
   searchQuery: string = '';
@@ -72,7 +82,17 @@ export class DotnetCoreComponent implements OnInit {
     { id: 'q25', title: '25. What are Action Filters? How many types of action filters are there in MVC?' },
     { id: 'q26', title: '26. What is Kestrel?' },
     { id: 'q27', title: '27. What is API Versioning?' },
-    { id: 'q28', title: '28. What is the difference between ref & out parameters?' }
+    { id: 'q28', title: '28. What is the difference between ref & out parameters?' },
+    { id: 'q29', title: '29. What is ASP.NET Core MVC and how does the request flow work?' },
+    { id: 'q30', title: '30. What is the difference between ActionResult and IActionResult?' },
+    { id: 'q31', title: '31. How do you pass data from Controller to View? (ViewBag vs ViewData)' },
+    { id: 'q32', title: '32. What is TempData and how does it work?' },
+    { id: 'q33', title: '33. What is the difference between Keep() and Peek() in TempData?' },
+    { id: 'q34', title: '34. What are Cookies and how do you use them in ASP.NET Core?' },
+    { id: 'q35', title: '35. What is a Partial View and when should you use it?' },
+    { id: 'q36', title: '36. What is the difference between a Partial View and a View Component?' },
+    { id: 'q37', title: '37. What is Model Binding and ModelState.IsValid?' },
+    { id: 'q38', title: '38. What is the difference between Conventional Routing and Attribute Routing?' }
   ];
 
   filteredQuestions: Array<{ id: string; title: string }> = [];
@@ -233,15 +253,175 @@ GetValues(out x, out y);
 Console.WriteLine($"{x}, {y}"); // Output: 1, 2
 `;
 
+  actionResultCode: string = `// IActionResult: flexible interface returning any HTTP result or View
+public IActionResult GetProduct(int id)
+{
+    if (id <= 0)
+        return BadRequest("Invalid ID");
+
+    var product = _repo.GetById(id);
+    if (product == null)
+        return NotFound();
+
+    return View(product); // or return Ok(product);
+}
+
+// ActionResult<T>: type-safe return (introduced in .NET Core 2.1)
+public ActionResult<Product> GetProductApi(int id)
+{
+    var product = _repo.GetById(id);
+    if (product == null)
+        return NotFound();
+
+    return product; // automatically wrapped in 200 OK with Product type metadata
+}
+`;
+
+  viewDataViewBagCode: string = `// In Controller:
+ViewData["Title"] = "Dashboard";
+ViewData["TotalCount"] = 42;
+
+ViewBag.Greeting = "Welcome back!";
+ViewBag.IsAdmin = true;
+
+// In Razor View (.cshtml):
+// <h1>@ViewData["Title"]</h1>
+// <p>Total: @((int)ViewData["TotalCount"])</p> <!-- Cast required for non-string -->
+
+// <h2>@ViewBag.Greeting</h2>                  <!-- Clean dynamic syntax, no casting -->
+`;
+
+  tempDataCode: string = `// Action 1: Set message in TempData and redirect
+[HttpPost]
+public IActionResult Create(User user)
+{
+    _repo.Add(user);
+    TempData["SuccessMessage"] = "User created successfully!";
+    return RedirectToAction("Index"); // Redirect creates a new HTTP request
+}
+
+// Action 2: Next request reads TempData in Razor View (Index.cshtml)
+// @if (TempData["SuccessMessage"] != null)
+// {
+//     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+// }
+`;
+
+  peekKeepCode: string = `// PEEK: Reads the value WITHOUT marking it for deletion
+// Value stays available for subsequent requests
+var msg = TempData.Peek("Notification");
+
+// KEEP: Reads normally, then tells TempData to preserve it
+var alert = TempData["Alert"]; // Normal read marks it for deletion
+TempData.Keep("Alert");        // Un-marks it: keeps "Alert" alive for next request
+
+// Or keep ALL keys:
+TempData.Keep();
+`;
+
+  cookiesCode: string = `// 1. Writing a Cookie (stored on client browser)
+Response.Cookies.Append("Theme", "DarkMode", new CookieOptions
+{
+    Expires = DateTimeOffset.UtcNow.AddDays(30),
+    HttpOnly = true, // JavaScript cannot read it (protects against XSS)
+    Secure = true    // Transmitted over HTTPS only
+});
+
+// 2. Reading a Cookie
+string? currentTheme = Request.Cookies["Theme"];
+
+// 3. Deleting a Cookie
+Response.Cookies.Delete("Theme");
+`;
+
+  partialViewCode: string = `<!-- 1. Reusable Partial View: _ProductCard.cshtml -->
+@model Product
+
+<div class="card p-3 mb-2 shadow-sm">
+    <h5>@Model.Name</h5>
+    <p class="text-muted">Price: $@Model.Price</p>
+</div>
+
+<!-- 2. Inside Parent View (Products.cshtml) -->
+@foreach (var item in Model.ProductList)
+{
+    <partial name="_ProductCard" model="item" />
+}
+`;
+
+  viewComponentCode: string = `// 1. View Component C# Class (has its own logic / DI)
+public class ShoppingCartSummaryViewComponent : ViewComponent
+{
+    private readonly ICartService _cartService;
+    public ShoppingCartSummaryViewComponent(ICartService cartService)
+    {
+        _cartService = cartService;
+    }
+
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        var items = await _cartService.GetCartItemsAsync();
+        return View(items); // Loads Views/Shared/Components/ShoppingCartSummary/Default.cshtml
+    }
+}
+
+// 2. In any Razor view (independent of parent page's model):
+// @await Component.InvokeAsync("ShoppingCartSummary")
+`;
+
+  modelBindingValidationCode: string = `// Model with Data Annotations
+public class RegisterViewModel
+{
+    [Required(ErrorMessage = "Email is required")]
+    [EmailAddress]
+    public string Email { get; set; }
+
+    [Required]
+    [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters")]
+    public string Password { get; set; }
+}
+
+// Controller Action
+[HttpPost]
+public IActionResult Register(RegisterViewModel model)
+{
+    // Model Binding automatically mapped incoming form data into "model"
+    if (!ModelState.IsValid)
+    {
+        return View(model); // Form redisplayed with validation error messages
+    }
+
+    _userService.CreateUser(model);
+    return RedirectToAction("Login");
+}
+`;
+
+  routingCode: string = `// 1. Conventional Routing (configured globally in Program.cs)
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// 2. Attribute Routing (configured directly above Controller / Action)
+[Route("products")]
+public class ProductController : Controller
+{
+    [HttpGet("{id:int}")] // URL: /products/10
+    public IActionResult Details(int id) => View(_repo.GetById(id));
+
+    [HttpGet("category/{name}")] // URL: /products/category/electronics
+    public IActionResult ByCategory(string name) => View(_repo.GetByCategory(name));
+}
+`;
+
   constructor(private seo: SeoService) {
     this.filteredQuestions = [...this.questions];
   }
 
   ngOnInit(): void {
     this.seo.updatePageSeo({
-      title: 'Top 28+ .NET Core & C# Interview Questions and Answers | Ace Interview',
-      description: 'Comprehensive, battle-tested .NET Core and C# interview questions covering Dependency Injection, Middleware, EF Core, Async/Await, Kestrel, and CLR internals.',
-      keywords: 'dotnet core interview questions, c# interview questions, asp.net core interview, dependency injection c#, addsingleton addscoped addtransient, middleware vs filters, entity framework core interview, async await c#',
+      title: 'Top 38+ ASP.NET (Core + MVC) Interview Questions and Answers | Ace Interview',
+      description: 'Comprehensive .NET Core & ASP.NET Core MVC interview questions covering Dependency Injection, Middleware, EF Core, ViewBag, ViewData, TempData, Peek, Keep, Cookies, ActionResult, and Partial Views.',
+      keywords: 'dotnet core interview questions, asp.net core mvc interview, viewbag vs viewdata, tempdata peek keep, actionresult vs iactionresult, cookies in asp.net core, partial view vs view component, dependency injection c#',
       url: '/dotnet-core',
       schema: {
         '@context': 'https://schema.org',
@@ -346,7 +526,17 @@ Console.WriteLine($"{x}, {y}"); // Output: 1, 2
       q25: this.q25,
       q26: this.q26,
       q27: this.q27,
-      q28: this.q28
+      q28: this.q28,
+      q29: this.q29,
+      q30: this.q30,
+      q31: this.q31,
+      q32: this.q32,
+      q33: this.q33,
+      q34: this.q34,
+      q35: this.q35,
+      q36: this.q36,
+      q37: this.q37,
+      q38: this.q38
     };
 
     const target = questionMap[id];
